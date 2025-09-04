@@ -660,7 +660,10 @@ QTreeView#tvwNoteFile QScrollBar::sub-line:vertical {
     height: 0px;
 }
 
-
+QPlainTextEdit
+{
+	 background-color: #9CA3AF;
+}
 
 </string>
    </property>
@@ -2432,7 +2435,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>

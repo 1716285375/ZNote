@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include <QWebEngineSettings>
+#include <QIcon>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -17,6 +18,8 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv);
+
+    a.setWindowIcon(QIcon(":/app/logo.ico"));
     MainWindow w;
     w.show();
     return a.exec();

@@ -26,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->init();
-    this->setWindowIcon(QIcon(":/app/logo.ico"));
     this->setWindowTitle(QString("ZNote"));
 
     this->setupConnection();

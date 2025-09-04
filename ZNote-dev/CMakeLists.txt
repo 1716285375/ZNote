@@ -63,6 +63,8 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/fileresolve.cpp
 )
 
+
+
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
 # 添加 include 目录到头文件路径
