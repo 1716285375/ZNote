@@ -589,6 +589,77 @@ QCheckBox#chkPlaySound::indicator:checked:before {
     left: 22px; /* 滑块滑动到右边 */
 }
 
+/**  */
+QTreeView#tvwNoteFile {
+    background-color: #1F2937;      /* gray-800 */
+    alternate-background-color: #111827; /* gray-900 */
+    color: #F3F4F6;                /* gray-100 */
+    border: 1px solid #374151;     /* gray-700 */
+    font-size: 14px;
+    show-decoration-selected: 1;
+}
+
+QTreeView#tvwNoteFile::item {
+    padding: 4px 8px;
+    border: none;
+}
+
+QTreeView#tvwNoteFile::item:hover {
+    background-color: #374151;  /* gray-700 */
+    color: #FFFFFF;
+}
+
+QTreeView#tvwNoteFile::item:selected {
+    background-color: #2563EB;  /* primary-dark */
+    color: #FFFFFF;
+}
+
+QTreeView#tvwNoteFile::branch {
+    background: transparent;
+}
+
+QTreeView#tvwNoteFile::branch:has-children:!has-siblings:closed,
+QTreeView#tvwNoteFile::branch:closed:has-children:has-siblings {
+    border-image: none;
+    image: url(:/icons/folder-closed.png);
+}
+
+QTreeView#tvwNoteFile::branch:open:has-children:!has-siblings,
+QTreeView#tvwNoteFile::branch:open:has-children:has-siblings {
+    border-image: none;
+    image: url(:/icons/folder-open.png);
+}
+
+QTreeView#tvwNoteFile QHeaderView::section {
+    background-color: #374151;  /* gray-700 */
+    color: #F9FAFB;             /* gray-50 */
+    padding: 4px;
+    border: none;
+    border-right: 1px solid #4B5563; /* gray-600 */
+}
+
+QTreeView#tvwNoteFile QScrollBar:vertical {
+    border: none;
+    background: #111827;
+    width: 10px;
+    margin: 0px;
+}
+
+QTreeView#tvwNoteFile QScrollBar::handle:vertical {
+    background: #374151;
+    min-height: 20px;
+    border-radius: 4px;
+}
+
+QTreeView#tvwNoteFile QScrollBar::handle:vertical:hover {
+    background: #4B5563;
+}
+
+QTreeView#tvwNoteFile QScrollBar::add-line:vertical,
+QTreeView#tvwNoteFile QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
 
 
 </string>
@@ -700,7 +771,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-videoresolve.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-videoresolve.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -759,7 +830,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-downloadlist.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-downloadlist.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -818,7 +889,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-downloadabout.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-downloadabout.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -878,7 +949,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-noteread.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-noteread.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -937,7 +1008,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-videoplay.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-videoplay.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -997,7 +1068,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-setting.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-setting.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -1044,7 +1115,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../ZNote/resources.qrc">:/icons/left-banner-about.png</pixmap>
+             <pixmap resource="resources.qrc">:/icons/left-banner-about.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -1372,7 +1443,7 @@ QCheckBox#chkPlaySound::indicator:checked:before {
                         <string>清空日志</string>
                        </property>
                        <property name="icon">
-                        <iconset resource="../ZNote/resources.qrc">
+                        <iconset resource="resources.qrc">
                          <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
                        </property>
                       </widget>
@@ -1643,235 +1714,221 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="frameShadow">
            <enum>QFrame::Shadow::Raised</enum>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="3,7">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QFrame" name="frmPageNoteLeft">
-             <property name="frameShape">
-              <enum>QFrame::Shape::StyledPanel</enum>
+            <widget class="QSplitter" name="splitter_2">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Raised</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="frmPageNoteRight">
-             <property name="frameShape">
-              <enum>QFrame::Shape::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Raised</enum>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_8">
-              <item>
-               <widget class="QFrame" name="frmPageNoteRightBanner">
-                <property name="frameShape">
-                 <enum>QFrame::Shape::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Shadow::Raised</enum>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,1,4,1,1,1">
-                 <item>
-                  <widget class="QLabel" name="lblNoteFilename">
-                   <property name="text">
-                    <string>FileName</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="lblNoteEditStatus">
-                   <property name="text">
-                    <string>status</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="spcHPageNoteRightBanner">
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>144</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btnNoteEdit">
-                   <property name="text">
-                    <string>编辑</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btnNoteSplit">
-                   <property name="text">
-                    <string>分屏</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btnNotePreview">
-                   <property name="text">
-                    <string>预览</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QStackedWidget" name="stwNote">
-                <widget class="QWidget" name="pageNoteEdit">
-                 <layout class="QVBoxLayout" name="verticalLayout_9">
+             <widget class="QFrame" name="frmPageNoteLeft">
+              <property name="frameShape">
+               <enum>QFrame::Shape::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QTreeView" name="tvwNoteFile"/>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QFrame" name="frmPageNoteRight">
+              <property name="frameShape">
+               <enum>QFrame::Shape::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Shadow::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QFrame" name="frmPageNoteRightBanner">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,1,4,1,1,1">
                   <item>
-                   <widget class="QFrame" name="frmPageNoteEditBanner">
-                    <property name="frameShape">
-                     <enum>QFrame::Shape::StyledPanel</enum>
+                   <widget class="QLabel" name="lblNoteFilename">
+                    <property name="text">
+                     <string>FileName</string>
                     </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Shadow::Raised</enum>
-                    </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_5">
-                     <item>
-                      <widget class="QLabel" name="lblEditTitle">
-                       <property name="text">
-                        <string>编辑</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_4">
-                       <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>401</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="tbtn1">
-                       <property name="text">
-                        <string>...</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="tbtn2">
-                       <property name="text">
-                        <string>...</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTextEdit" name="tedtNote"/>
+                   <widget class="QLabel" name="lblNoteEditStatus">
+                    <property name="text">
+                     <string>status</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="spcHPageNoteRightBanner">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>144</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btnNoteEdit">
+                    <property name="text">
+                     <string>编辑</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btnNoteSplit">
+                    <property name="text">
+                     <string>分屏</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btnNotePreview">
+                    <property name="text">
+                     <string>预览</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
-                <widget class="QWidget" name="pageNoteSplit">
-                 <widget class="QSplitter" name="splitter">
-                  <property name="geometry">
-                   <rect>
-                    <x>30</x>
-                    <y>110</y>
-                    <width>0</width>
-                    <height>0</height>
-                   </rect>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Horizontal</enum>
-                  </property>
-                  <widget class="QFrame" name="frame_3">
-                   <property name="frameShape">
-                    <enum>QFrame::Shape::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Shadow::Raised</enum>
-                   </property>
-                  </widget>
-                  <widget class="QFrame" name="frame_4">
-                   <property name="frameShape">
-                    <enum>QFrame::Shape::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Shadow::Raised</enum>
-                   </property>
-                  </widget>
+               </item>
+               <item>
+                <widget class="QStackedWidget" name="stwNote">
+                 <property name="currentIndex">
+                  <number>1</number>
+                 </property>
+                 <widget class="QWidget" name="pageNoteEdit">
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <item>
+                    <widget class="QFrame" name="frmPageNoteEditBanner">
+                     <property name="frameShape">
+                      <enum>QFrame::Shape::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Shadow::Raised</enum>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QLabel" name="lblEditTitle">
+                        <property name="text">
+                         <string>编辑</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>401</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="tbtn1">
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="tbtn2">
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QTextEdit" name="tedtNote"/>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="pageNotePreview">
+                  <layout class="QVBoxLayout" name="verticalLayout_10" stretch="1,9">
+                   <item>
+                    <widget class="QFrame" name="frame_2">
+                     <property name="frameShape">
+                      <enum>QFrame::Shape::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Shadow::Raised</enum>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QLabel" name="label_3">
+                        <property name="text">
+                         <string>预览</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_4">
+                        <property name="text">
+                         <string>status</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>360</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="tbtnPreview1">
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="tbtnPreview2">
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QWebEngineView" name="webEngineView">
+                     <property name="url">
+                      <url>
+                       <string>about:blank</string>
+                      </url>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </widget>
-                <widget class="QWidget" name="pageNotePreview">
-                 <layout class="QVBoxLayout" name="verticalLayout_10">
-                  <item>
-                   <widget class="QFrame" name="frame_2">
-                    <property name="frameShape">
-                     <enum>QFrame::Shape::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Shadow::Raised</enum>
-                    </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_6">
-                     <item>
-                      <widget class="QLabel" name="label_3">
-                       <property name="text">
-                        <string>预览</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_4">
-                       <property name="text">
-                        <string>status</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_3">
-                       <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>360</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="tbtnPreview1">
-                       <property name="text">
-                        <string>...</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QToolButton" name="tbtnPreview2">
-                       <property name="text">
-                        <string>...</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QTextBrowser" name="tbwNotePreview"/>
-                  </item>
-                 </layout>
-                </widget>
-               </widget>
-              </item>
-             </layout>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -2362,8 +2419,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="../ZNote/resources.qrc"/>
+  <include location="resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
