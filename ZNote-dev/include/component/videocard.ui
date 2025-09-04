@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>frmVideoCard</class>
+ <widget class="QFrame" name="frmVideoCard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>617</width>
+    <height>355</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* 卡片容器样式 */
+QFrame#frmVideoCard {
+    background-color: rgba(31, 41, 55, 0.5); /* 半透明 var(--gray-800) */
+    border: 1px solid #374151; /* var(--gray-700) */
+    border-radius: 12px;
+}
+
+QFrame#frmVideoCard:hover {
+    border-color: #3B82F6; /* var(--primary) */
+}
+
+
+/* QLabel 样式 */
+QLabel {
+
+}
+QLabel#lblCardTitle
+{
+	color: #F3F4F6; /* var(--gray-100) */
+}
+QLabel#lblSize
+{
+	color: #D1D5DB;
+}
+QLabel#lblProgress
+{
+	color: #D1D5DB;	/* var(--gray-300) */
+}
+
+QLabel#Resolution{
+	color: #D1D5DB;	/* var(--gray-300) */
+}
+
+
+
+/* QComboBox 样式 */
+QComboBox#cboResolution {
+    background-color: #374151; /* var(--gray-700) */
+    color: #F3F4F6; /* var(--gray-100) */
+    border: 1px solid #4B5563; /* var(--gray-600) */
+    border-radius: 6px;
+    padding: 6px 30px 6px 12px;
+}
+
+QComboBox#cboResolution:hover {
+    border-color: #6B7280; /* var(--gray-500) */
+}
+
+QComboBox#cboResolution:focus {
+    border-color: #3B82F6; /* var(--primary) */
+}
+
+/* 下拉按钮区域样式 */
+QComboBox#cboResolution::drop-down {
+    subcontrol-origin: content; /* 改为content可能解决位置问题 */
+    subcontrol-position: top right;
+    width: 24px; /* 足够容纳箭头 */
+    height: 100%; /* 占满整个控件高度 */
+    border-left: 1px solid #4B5563;
+    background-color: transparent; /* 继承父控件背景 */
+}
+
+/* 下拉箭头样式 - 关键修正 */
+QComboBox#cboResolution::down-arrow {
+    /* 移除中间的::drop-down，Qt选择器不支持这种嵌套 */
+    image: url(&quot;qrc:/icons/down-arrow.png&quot;);
+    width: 16px;
+    height: 16px;
+    /* 添加偏移调整位置 */
+    margin: 0 4px;
+}
+
+
+QComboBox#cboResolution QAbstractItemView {
+    background-color: #1F2937; /* var(--gray-800) */
+    color: #F3F4F6; /* var(--gray-100) */
+    border: 1px solid #374151; /* var(--gray-700) */
+    border-radius: 6px;
+    padding: 4px;
+    selection-background-color: #3B82F6; /* var(--primary) */
+    selection-color: white;
+}
+
+
+
+/* QProgressBar 样式 */
+QProgressBar#pbarDownload {
+    background-color: #374151; /* var(--gray-700) */
+    border-radius: 4px;
+	color: #9CA3AF;  /* var(--gray-400) */
+    text-align: right;
+}
+
+QProgressBar#pbarDownload::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+                                stop:0 #10B981, stop:1 #059669); /* var(--success) to var(--success-dark) */
+    border-radius: 4px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="4,2,2,1,1">
+   <item>
+    <widget class="QLabel" name="lblThumbnail">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblCardTitle">
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Title</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="lytHResolution" stretch="2,8">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="lblResolution">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>分辨率:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cboResolution">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>自动选择</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QProgressBar" name="pbarDownload">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>6</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>8</height>
+      </size>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="lytHProgress">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+     </property>
+     <item>
+      <widget class="QLabel" name="lblSize">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>20%</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spcHProgress">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblProgress">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>2.5MB/68MB</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

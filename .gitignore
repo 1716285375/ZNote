@@ -1,0 +1,81 @@
+# ==========================
+# Visual Studio 2022
+# ==========================
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Auto-generated VS files
+*.vcxproj.user
+*.vcxproj.filters
+*.ipch
+*.opensdf
+*.sdf
+*.cache
+*.db
+*.VC.db
+*.VC.VC.opendb
+
+## Build results
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Bb]uild*/
+[Bb]in*/
+[Oo]bj*/
+
+## Visual Studio Code
+.vscode/
+
+# ==========================
+# Qt-specific
+# ==========================
+*.pro.user
+*.pro.user.*
+*.qmake.stash
+*.moc
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.qmlc
+*.qmltypes
+*.rcc
+*.jsc
+*.qrc.user
+*.qrc.user.*
+
+# ==========================
+# CMake (if used)
+# ==========================
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ==========================
+# Misc
+# ==========================
+*.log
+*.vspscc
+*.vssscc
+*.ncb
+*.sbr
+*.tlh
+*.tli
+*.pdb
+*.ilk
+*.idb
+*.exp
+*.lib
+*.dll
+*.exe
+*.app
+*.dSYM/
+
+# out
+out/
+.vs/

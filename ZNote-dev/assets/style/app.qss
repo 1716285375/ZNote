@@ -1,0 +1,303 @@
+* {background-color: #111827; color: #F9FAFB;}
+
+QFrame#frmLeft
+{
+    border: 2px solid #3B82F6;
+        border-radius: 10px;
+        background-color: rgba(31, 41, 55, 1);
+}
+
+/* 主Logo文字Logo样式 */
+QLabel#lblApp {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,
+                          stop:0 #93C5FD,  /* var(--primary-light) */
+                          stop:1 #3B82F6); /* var(--primary) */
+    padding: 4px 8px;
+}
+
+
+/* 悬停效果（可选） */
+QLabel#lblApp:hover,
+QLabel#logoMainText:hover {
+    color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,
+                          stop:0 #B6DBFF,
+                          stop:1 #5B9BFF);
+}
+
+QLineEdit#edtUrl {
+    border: 2px solid #3B82F6;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #1F2937;
+    color: #F3F4F6;
+    font-size: 16px;
+}
+QLineEdit#edtUrl:hover {
+    border: 2px solid #93C5FD;
+}
+QLineEdit#edtUrl:focus {
+    border: 2px solid #2563EB;
+    background-color: #374151;
+}
+QLineEdit#edtUrl::placeholder {
+    color: #6B7280;
+}
+
+
+QPushButton#btnDownload {
+    padding: 14px 24px; /* 0.875rem * 16 = 14px, 1.5rem * 16 = 24px */
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    font-size: 16px; /* 1rem * 16 = 16px */
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnDownload:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnDownload:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+QPushButton#btnCrap {
+    padding: 14px 24px; /* 0.875rem * 16 = 14px, 1.5rem * 16 = 24px */
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    font-size: 16px; /* 1rem * 16 = 16px */
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnCrap:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnCrap:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+/** 侧边栏 */
+
+QPushButton#btnResolve {
+    padding: 5px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnResolve:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#Resolve:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+/** -------------- */
+
+QPushButton#btnDownloadList {
+    padding: 5px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnDownloadList:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnDownloadList:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+/** -------------- */
+
+QPushButton#btnDownloadStatus {
+    padding: 5px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnDownloadStatus:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnDownloadStatus:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+/** -------------- */
+
+QPushButton#btnSetting {
+    padding: 5px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnSetting:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnSetting:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+/** ------ Footscript ------- */
+
+QFrame#frmFootscript
+{
+    background-color: #1F2937; /* var(--gray-800) */
+    border-top: 1px solid #374151; /* var(--gray-700) */
+}
+
+/* 版本信息标签 */
+QLabel#lblAppVersion
+{
+    color: #93C5FD; /* var(--primary-light) */
+        background-color: none;
+    font-size: 13px;
+}
+
+/* 版权信息标签 */
+QLabel#lblCopyright {
+    color: #9CA3AF; /* var(--gray-400) */
+        background-color: none;
+    font-size: 12px;
+}
+
+/* 版权提示标签 */
+QLabel#lblCopyrightTip {
+    color: #6B7280; /* var(--gray-500) */
+        background-color: none;
+    font-size: 11px;
+}
+
+/** ----- */
+
+
+QPushButton#btnBrowseDir {
+    padding: 5px 20px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
+    color: white;
+    border: none;
+    border-radius: 8px; /* 0.5rem * 16 = 8px */
+    font-size: 16px; /* 1rem * 16 = 16px */
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+QPushButton#btnBrowseDir:Resolve {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+}
+
+QPushButton#btnBrowseDir:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
+    opacity: 0.7;
+}
+
+
+/**  Log */
+
+
+/* 清除日志按钮样式 */
+QPushButton#btnClearLog {
+    /* 基础样式 */
+    background-color: #374151; /* var(--gray-700) */
+    color: #9CA3AF; /* var(--gray-400) */
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+
+    /* 图标与文字间距 */
+    spacing: 4px;
+}
+
+/* 悬停状态 - 提示用户可交互 */
+QPushButton#btnClearLog:hover {
+    background-color: #4B5563; /* var(--gray-600) */
+    color: #EF4444; /* var(--danger) - 警告色提示风险操作 */
+    border-color: rgba(239, 68, 68, 0.3); /* 轻微危险色边框 */
+}
+
+/* 按下状态 - 强化反馈 */
+QPushButton#btnClearLog:pressed {
+    background-color: #1F2937; /* var(--gray-800) */
+    color: #EF4444; /* var(--danger) */
+    padding-top: 5px;
+    padding-bottom: 3px; /* 轻微位移模拟按压感 */
+}
+
+/* 禁用状态 */
+QPushButton#btnClearLog:disabled {
+    background-color: #374151; /* var(--gray-700) */
+    color: #6B7280; /* var(--gray-500) */
+    opacity: 0.7;
+}
+
+/* 带图标的样式扩展 */
+QPushButton#btnClearLog::icon {
+    width: 14px;
+    height: 14px;
+    color: #9CA3AF; /* 默认图标色 */
+}
+
+QPushButton#btnClearLog:hover::icon {
+    color: #EF4444; /* 悬停时图标同步变色 */
+}
+
+
+QFrame#frmLog {
+    background-color: rgba(31, 41, 55, 0.5);
+    border: 1px solid #374151;
+    border-radius: 12px; /* 0.75rem * 16 = 12px */
+    padding: 20px; /* 1.25rem * 16 = 20px */
+    transition: all 0.3s ease;
+}
+
+QFrame#frmLog:hover {
+    border-color: #3B82F6;
+}
+
+/**  */
+QTextBrowser#tbwLog {
+    background-color: rgba(31, 41, 55, 0.5);
+    border: 1px solid #374151;
+    border-radius: 12px; /* 0.75rem * 16 = 12px */
+    padding: 20px; /* 1.25rem * 16 = 20px */
+    transition: all 0.3s ease;
+}
+
+QFrame#frmTbw {
+    background-color: rgba(31, 41, 55, 0.5);
+    border: 1px solid #374151;
+    border-radius: 12px; /* 0.75rem * 16 = 12px */
+    padding: 20px; /* 1.25rem * 16 = 20px */
+    transition: all 0.3s ease;
+}
+
+QFrame#frmTbw:hover {
+    border-color: #3B82F6;
+}
