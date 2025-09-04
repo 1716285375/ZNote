@@ -79,3 +79,9 @@ Makefile
 # out
 out/
 .vs/
+
+# vendor
+vendor/
+
+# vcpkg
+vcpkg*/

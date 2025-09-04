@@ -2,14 +2,18 @@
 #include "downloadmanager.h"
 #include "ui_mainwindow.h"
 #include "misc.h"
+#include "configmanager.h"
 
+#include <QOverload>
 #include <QStringList>
 #include <QIcon>
+#include <QDir>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSignalBlocker>
 #include <QStandardItemModel>
 #include <QAbstractItemView>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
     , btngLeft(new QButtonGroup(this))
     , btngNote(new QButtonGroup(this))
     , manager(new DownloadManager(this))
+	, config(ConfigManager::instance())
+    , fileBrowser(new FileBrowser(this))
 {
     ui->setupUi(this);
     this->init();
@@ -51,14 +57,15 @@ void MainWindow::setupConnection()
 
     connect(ui->edtSaveDir, &QLineEdit::textChanged, this, [this](const QString &text) {
         // 定义非法字符 (Windows 文件/目录名限制)
-        if (znote::utils::isValidPath(text)) {
-            lastValidDir = text; // 保存最新合法输入
+        if (znote::utils::isValidPath(text))
+        {
+            config.setValue("download.defaultPath", text);
         }
-        else {
+        else
+        {
             // 恢复上次合法输
             QSignalBlocker blocker(ui->edtSaveDir);
-            ui->edtSaveDir->setText(lastValidDir);
-
+            ui->edtSaveDir->setText(config.getValue("download.defaultPath").toString());
             QMessageBox::warning(this, tr("非法目录"), tr("输入的目录名包含非法字符或格式！"));
         }
 
@@ -106,41 +113,24 @@ void MainWindow::setupConnection()
         ui->stwNote->setCurrentWidget(ui->pageNoteEdit);
     });
 
-    connect(ui->btnNoteSplit, &QPushButton::clicked, this, [this]() {
-        ui->stwNote->setCurrentWidget(ui->pageNoteSplit);
-    });
-
     connect(ui->btnNotePreview, &QPushButton::clicked, this, [this]() {
         ui->stwNote->setCurrentWidget(ui->pageNotePreview);
     });
+
+    connect(ui->cmbThreads, QOverload<int>::of(&QComboBox::currentIndexChanged), &config, [this](int index) {
+		int threads = ui->cmbThreads->currentIndex() + 1; // index 从 0 开始
+        config.setValue("download.threadCount", threads);
+        config.save();
+		qDebug() << "Set thread count to" << threads;
+	});
 
 }
 
 void MainWindow::init()
 {
-    btngLeft->addButton(ui->btnResolve);
-    btngLeft->addButton(ui->btnDownloadList);
-    btngLeft->addButton(ui->btnDownloadStatus);
-    btngLeft->addButton(ui->btnNote);
-    btngLeft->addButton(ui->btnVideo);
-    btngLeft->addButton(ui->btnSetting);
-    btngLeft->addButton(ui->btnAbout);
+	this->initConfig();
 
-    btngNote->addButton(ui->btnNoteEdit);
-    btngNote->addButton(ui->btnNoteSplit);
-    btngNote->addButton(ui->btnNotePreview);
-
-    // 设置按钮组为互斥模式
-    btngLeft->setExclusive(true);
-
-    lastValidDir = QString("C:\\C\\Qt\\ZNote\\tmp");
-    ui->edtSaveDir->setText(lastValidDir);
-
-    // 下载列表
-    QStandardItemModel *modelDownloadList = new QStandardItemModel(this);
-    modelDownloadList->setColumnCount(5);
-    modelDownloadList->setHorizontalHeaderLabels({"选择", "标题", "分辨率", "音频", "字幕"});
-    ui->tblDownloadList->setModel(modelDownloadList);
+	this->initUI();
 }
 
 void MainWindow::on_btnDownload_clicked()
@@ -193,4 +183,89 @@ void MainWindow::checkState()
     // TODO: 检查执行前的状态
 }
 
+void MainWindow::initConfig()
+{
+	// 可执行文件目录下的 config.json
+	QString configPath = QDir(QCoreApplication::applicationDirPath())
+		.absoluteFilePath("config.json");
+
+	QFile file(configPath);
+	if (!file.exists())
+	{
+        qDebug() << "config.json not found! Creating default config...";
+
+		// 默认下载设置
+		config.setValue("download.defaultPath", "C:/Users/Jie/Downloads/ZNote");
+		config.setValue("download.threadCount", 4);
+		config.setValue("download.filePrefix", "ZN_");
+		config.setValue("download.fileSuffix", "_video");
+		config.setValue("download.onComplete.playSound", true);
+		config.setValue("download.onComplete.autoOpenDir", false);
+
+		if (config.save())
+			qDebug() << "Default config.json created at:" << configPath;
+		else
+			qDebug() << "Failed to create default config.json!";
+	}
+	else
+	{
+		config.setFilePath(configPath); // 安全加载，内部 load() 会加锁
+
+		qDebug() << "Loaded config from:" << configPath;
+	}
+
+	// 读取文件默认保存路径
+	QString defaultPath = config.getValue("download.defaultPath", "C:/Users/Jie/Downloads/ZNote").toString();
+    qDebug() << "Download default save dir: " << defaultPath;
+    ui->edtSaveDir->setText(defaultPath);
+
+	// 读取下载线程数作为示例
+	int threadCount = config.getValue("download.threadCount", 4).toInt();
+	qDebug() << "Download threads: " << threadCount;
+	ui->cmbThreads->setCurrentIndex(threadCount - 1);
+
+	// 可根据实际需要加载更多配置
+}
+
+
+
+void MainWindow::initUI()
+{
+	btngLeft->addButton(ui->btnResolve);
+	btngLeft->addButton(ui->btnDownloadList);
+	btngLeft->addButton(ui->btnDownloadStatus);
+	btngLeft->addButton(ui->btnNote);
+	btngLeft->addButton(ui->btnVideo);
+	btngLeft->addButton(ui->btnSetting);
+	btngLeft->addButton(ui->btnAbout);
+
+	btngNote->addButton(ui->btnNoteEdit);
+	btngNote->addButton(ui->btnNoteSplit);
+	btngNote->addButton(ui->btnNotePreview);
+
+	// 设置按钮组为互斥模式
+	btngLeft->setExclusive(true);
+	ui->edtSaveDir->setText(config.getValue("download.defaultPath").toString());
+
+	// 下载列表
+	QStandardItemModel* modelDownloadList = new QStandardItemModel(this);
+	modelDownloadList->setColumnCount(5);
+	modelDownloadList->setHorizontalHeaderLabels({ "选择", "标题", "分辨率", "音频", "字幕" });
+	ui->tblDownloadList->setModel(modelDownloadList);
+
+	ui->webEngineView->setAttribute(Qt::WA_OpaquePaintEvent);
+	ui->webEngineView->setAttribute(Qt::WA_NoSystemBackground);
+
+	// 文件浏览器
+	ui->tvwNoteFile->setHeaderHidden(true);         // 隐藏表头，像 IDE 文件树一样
+	ui->tvwNoteFile->setAnimated(true);             // 展开/折叠有动画
+	ui->tvwNoteFile->setIndentation(18);            // 缩进大小
+	ui->tvwNoteFile->setExpandsOnDoubleClick(true); // 双击目录展开
+
+	fileBrowser->setTreeView(ui->tvwNoteFile);
+    fileBrowser->setRootPath(config.getValue("download.defaultPath").toString());
+    fileBrowser->setNameFilters({ "*.txt", "*.md" }); // 可选 
+    //fileBrowser->setWebView(ui->webEngineView);
+    fileBrowser->setTextEdit(ui->tedtNote);
+}
 

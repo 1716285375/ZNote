@@ -4,7 +4,7 @@
 #include "taskqueue.h"
 #include "task.h"
 #include "urlparser.h"
-#include "configmanager.h"
+
 
 #include <QObject>
 #include <QVector>
@@ -31,8 +31,6 @@ public:
 
    /* QVector<DownloadHistoryItem> getHistoryTasks() const;*/
 
-    ConfigManager *config() { return &cfg; }
-
 signals:
     void logMessage(const QString &msg);
     void taskProgress(const int done, const float percent);
@@ -43,7 +41,6 @@ private slots:
 
 private:
     TaskQueue *queue;
-    ConfigManager cfg;
     HistoryManager *history;
     QMutex mutex;
     int totalTasks = 0;

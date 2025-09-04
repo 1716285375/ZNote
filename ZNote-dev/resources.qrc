@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/icons">
+    <file alias="folder-open.png">assets/icons/folder-down-arrow.png</file>
+    <file alias="folder-closed.png">assets/icons/left-arrow.png</file>
     <file alias="down-arrow.png">assets/icons/down-arrow.png</file>
     <file alias="clear.png">assets/icons/clear.png</file>
     <file alias="left-banner-about.png">assets/icons/left-banner-about.png</file>
@@ -9,7 +11,6 @@
     <file alias="left-banner-setting.png">assets/icons/left-banner-setting.png</file>
     <file alias="left-banner-videoplay.png">assets/icons/left-banner-videoplay.png</file>
     <file alias="left-banner-videoresolve.png">assets/icons/left-banner-videoresolve.png</file>
-
   </qresource>
   <qresource prefix="/qss">
     <file alias="app.qss">assets/style/app.qss</file>

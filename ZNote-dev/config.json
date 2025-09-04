@@ -1,0 +1,12 @@
+{
+  "download": {
+    "defaultPath": "C:/A/Web/ZNote/service/datas/markdown",
+    "threadCount": 4,
+    "filePrefix": "ZN_",
+    "fileSuffix": "_video",
+    "onComplete": {
+      "playSound": true,
+      "autoOpenDir": false
+    }
+  }
+}

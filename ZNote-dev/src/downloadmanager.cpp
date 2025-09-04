@@ -1,6 +1,7 @@
 #include "downloadmanager.h"
 #include "videodownloader.h"
 #include "historymanager.h"
+#include "configmanager.h"
 
 #include <QMessageBox>
 
@@ -28,10 +29,6 @@ void DownloadManager::parseUrl(const QString &url, const QString &savePath)
             task.playlistTitle = entry.playlistTitle;
             task.index = entry.index;
             // 应用配置参数
-            task.resolution = cfg.getResolution();
-            task.audioFormat = cfg.getAudioFormat();
-            task.subtitles = cfg.isSubtitlesEnabled();
-
             emit logMessage("解析成功: " + task.url + " 加入下载队列");
             addTask(task);
         }

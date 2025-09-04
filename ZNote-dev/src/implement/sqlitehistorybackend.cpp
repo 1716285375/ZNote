@@ -68,5 +68,6 @@ QVector<DownloadHistoryItem> SQLiteHistoryBackend::load()
 void SQLiteHistoryBackend::save(const QVector<DownloadHistoryItem> &items) {
     // SQLite 不需要一次性写全体，通常只增量 add
     // 这里可以选择清空再写，或者直接忽略
+    return;
 }
 

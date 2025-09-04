@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>934</width>
-    <height>730</height>
+    <height>679</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1804,7 +1804,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <widget class="QStackedWidget" name="stwNote">
                  <property name="currentIndex">
-                  <number>1</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="pageNoteEdit">
                   <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1855,7 +1855,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QTextEdit" name="tedtNote"/>
+                    <widget class="QMarkdownTextEdit" name="tedtNote"/>
                    </item>
                   </layout>
                  </widget>
@@ -2424,6 +2424,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>QWebEngineView</class>
    <extends>QWidget</extends>
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+  <customwidget>
+   <class>QMarkdownTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>qmarkdowntextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources>

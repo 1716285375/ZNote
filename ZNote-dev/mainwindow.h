@@ -6,9 +6,11 @@
 
 #include "videodownloader.h"
 #include "taskqueue.h"
+#include "core/filebrowser.h"
 
 class QButtonGroup;
 class DownloadManager;
+class ConfigManager;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +30,12 @@ private:
     void setupConnection();
     void init();
 
+	void checkState();
+
+	void initConfig();
+
+    void initUI();
+
 private slots:
     // 自动connect
     void on_btnDownload_clicked();
@@ -40,9 +48,6 @@ private slots:
     void onCrapFinished(QStringList videos);
 
 private:
-    void checkState();
-
-private:
     Ui::MainWindow *ui;
     DownloadManager *manager;
 
@@ -51,6 +56,11 @@ private:
     QButtonGroup *btngNote;
 
     /** 上一次合法文件保存目录 */
-    QString lastValidDir;
+    ConfigManager &config;
+
+    /** 文件浏览器 */
+	FileBrowser* fileBrowser;
+
+
 };
 #endif // MAINWINDOW_H
