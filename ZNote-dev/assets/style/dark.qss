@@ -1,0 +1,221 @@
+/* ================================
+   全局字体和背景（暗色）
+   ================================ */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #1e1e1e; /* 暗背景 */
+    color: #e0e0e0; /* 浅灰文字 */
+}
+
+/* ================================
+   主窗口区域 Frame
+   ================================ */
+QFrame#frmLeft,
+QFrame#frmLog,
+QFrame#frmTbw {
+    border: 1px solid #2f2f2f;
+    border-radius: 10px;
+    background-color: #2b2b2b; /* 深灰背景 */
+}
+
+/* ================================
+   Logo 与标题
+   ================================ */
+QLabel#lblApp {
+    font-size: 36px;
+    font-weight: bold;
+    color: #2f80ed; /* 蓝色标题 */
+}
+QLabel#lblApp:hover {
+    color: #4ea1ff; /* hover 更亮的蓝 */
+}
+
+QLabel#lblBasicTitle,
+QLabel#lblNameFileTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e0e0e0;
+    padding-left: 8px;
+    border-left: 3px solid #2f80ed;
+}
+
+/* ================================
+   提示文字
+   ================================ */
+QLabel#lblDownloadCompleteTitleTip,
+QLabel#lblDownloadThreadTip,
+QLabel#lblDefaultSavepathTip,
+QLabel#lblNameFileRuleTip,
+QLabel#lblOriginFileName {
+    font-size: 12px;
+    color: #aaaaaa; /* 浅灰提示 */
+    font-style: italic;
+}
+
+/* ================================
+   输入框
+   ================================ */
+QLineEdit {
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+}
+QLineEdit:hover {
+    border: 1px solid #2f80ed;
+}
+QLineEdit:focus {
+    border: 1px solid #2f80ed;
+    background-color: #1a2636; /* 聚焦浅蓝灰 */
+}
+QLineEdit::placeholder {
+    color: #777777;
+}
+
+/* ================================
+   按钮基础
+   ================================ */
+QPushButton {
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+}
+
+/* 主按钮（蓝底白字） */
+QPushButton#btnResolve:checked,
+QPushButton#btnDownloadList:checked,
+QPushButton#btnDownloadStatus:checked,
+QPushButton#btnNote:checked,
+QPushButton#btnVideo:checked,
+QPushButton#btnSetting:checked,
+QPushButton#btnAbout:checked {
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
+}
+QPushButton#btnDownload:hover {
+    background-color: #1a56db;
+}
+QPushButton#btnDownload:pressed {
+    background-color: #174bb5;
+}
+
+/* 次按钮（暗色背景 + 蓝字） */
+QPushButton#btnResolve,
+QPushButton#btnDownloadList,
+QPushButton#btnDownloadStatus,
+QPushButton#btnNote,
+QPushButton#btnVideo,
+QPushButton#btnSetting,
+QPushButton#btnAbout,
+QPushButton#btnDownload,
+QPushButton#btnPause,
+QPushButton#btnCrap {
+    background-color: #2b2b2b;
+    color: #2f80ed;
+    border: 1px solid #2f80ed;
+}
+QPushButton#btnResolve:hover,
+QPushButton#btnPause:hover,
+QPushButton#btnDownloadList:hover,
+QPushButton#btnDownloadStatus:hover,
+QPushButton#btnNote:hover,
+QPushButton#btnVideo:hover,
+QPushButton#btnSetting:hover,
+QPushButton#btnAbout:hover {
+    background-color: #1a2636; /* hover 暗蓝灰 */
+}
+QPushButton#btnResolve:pressed,
+QPushButton#btnPause:pressed,
+QPushButton#btnDownloadList:pressed,
+QPushButton#btnDownloadStatus:pressed,
+QPushButton#btnNote:pressed,
+QPushButton#btnVideo:pressed,
+QPushButton#btnSetting:pressed,
+QPushButton#btnAbout:pressed {
+    background-color: #22344a; /* 按下更深蓝灰 */
+}
+
+/* 危险按钮（红色） */
+QPushButton#btnClearLog {
+    background-color: #3a1e1e;
+    color: #f87171; /* 浅红字 */
+    border: 1px solid #dc2626;
+}
+QPushButton#btnClearLog:hover {
+    background-color: #4c1f1f;
+}
+QPushButton#btnClearLog:pressed {
+    background-color: #661f1f;
+}
+
+/* ================================
+   进度条
+   ================================ */
+QLabel#lblProgressTitle {
+    background-color: none;
+    color: #e0e0e0;
+}
+QProgressBar#pbarDownload {
+    background-color: #2b2b2b;
+    border-radius: 6px;
+    color: #e0e0e0;
+    text-align: center;
+}
+QProgressBar#pbarDownload::chunk {
+    background-color: #2f80ed;
+    border-radius: 6px;
+}
+
+/* ================================
+   Tab 样式
+   ================================ */
+QTabBar::tab {
+    background: #2b2b2b;
+    color: #aaaaaa;
+    padding: 10px 20px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+QTabBar::tab:selected {
+    background: #1e1e1e;
+    color: #2f80ed;
+    font-weight: bold;
+    border-bottom: 2px solid #2f80ed;
+}
+QTabBar::tab:hover {
+    background: #1a2636;
+    color: #e0e0e0;
+}
+
+/* ================================
+   树视图
+   ================================ */
+QTreeView#tvwNoteFile {
+    background-color: #1e1e1e;
+    alternate-background-color: #2b2b2b;
+    color: #e0e0e0;
+    border: 1px solid #2f2f2f;
+}
+QTreeView#tvwNoteFile::item:selected {
+    background-color: #2f80ed;
+    color: #ffffff;
+}
+QTreeView#tvwNoteFile::item:hover {
+    background-color: #1a2636;
+}
+
+/* ================================
+   纯文本编辑器
+   ================================ */
+QPlainTextEdit {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+}

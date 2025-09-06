@@ -18,4 +18,11 @@
     <qresource prefix="/app">
         <file alias="logo.ico">assets/app/logo.ico</file>
     </qresource>
+    <qresource prefix="/">
+        <file alias="media/edit-find-replace.svg">assets/svg/edit-find-replace.svg</file>
+        <file alias="media/format-text-superscript.svg">assets/svg/format-text-superscript.svg</file>
+        <file alias="media/go-bottom.svg">assets/svg/go-bottom.svg</file>
+        <file alias="media/go-top.svg">assets/svg/go-top.svg</file>
+        <file alias="media/window-close.svg">assets/svg/window-close.svg</file>
+    </qresource>
 </RCC>

@@ -6,7 +6,7 @@
 #include <QList>
 
 class VideoDownloader;
-class DownloadTask;
+struct DownloadTask;
 
 class TaskQueue : public QObject
 {

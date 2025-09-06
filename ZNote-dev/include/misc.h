@@ -5,7 +5,7 @@
 #include <QVector>
 
 class VideoEntry;
-class DownloadTask;
+struct DownloadTask;
 
 namespace znote::utils {
     QString generateRandomString(int length);

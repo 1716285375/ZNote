@@ -11,8 +11,8 @@
 #include <QMutex>
 #include <QMutexLocker>
 
-class DownloadHistoryItem;
-class ParsedEntry;
+struct DownloadHistoryItem;
+struct ParsedEntry;
 class HistoryManager;
 
 class DownloadManager : public QObject

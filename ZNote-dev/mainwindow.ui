@@ -18,163 +18,85 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">* {background-color: #111827; color: #F9FAFB;}
-
-QFrame#frmLeft
-{
-    border: 2px solid #3B82F6;
-	border-radius: 10px;
-	background-color: rgba(31, 41, 55, 1);
-}
-
-/* 主Logo文字Logo样式 */
-QLabel#lblApp {
+    <string notr="true">/* 🌐 全局设置 */
+* {
     font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
-    color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, 
-                          stop:0 #93C5FD,  /* var(--primary-light) */
-                          stop:1 #3B82F6); /* var(--primary) */
-    padding: 4px 8px;
-	background-color: rgba(0.5,0.5,0.5, 0.2);
+    background-color: #ffffff;
+    color: #2f3437;
+}
+
+/* 🌐 全局设置 */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #2f3437;
+}
+
+/* 🏷️ 应用 Logo 标题 */
+QLabel#lblApp {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2f80ed;
+}
+QLabel#lblApp:hover {
+    color: #1a56db;
 }
 
 
-/* 悬停效果（可选） */
-QLabel#lblApp:hover,
-QLabel#logoMainText:hover {
-    color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, 
-                          stop:0 #B6DBFF, 
-                          stop:1 #5B9BFF);
-}
-
-QLineEdit#edtUrl {
-    border: 2px solid #3B82F6;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: #1F2937;
-    color: #F3F4F6;
+/* 📑 标题 Label */
+QLabel#lblBasicTitle,
+QLabel#lblNameFileTitle,
+QLabel#lblLogTitle {
     font-size: 16px;
-}
-QLineEdit#edtUrl:hover {
-    border: 2px solid #93C5FD;
-}
-QLineEdit#edtUrl:focus {
-    border: 2px solid #2563EB;
-    background-color: #374151;
-}
-QLineEdit#edtUrl::placeholder {
-    color: #6B7280;
+    font-weight: 600;
+    padding-left: 8px;
+    border-left: 3px solid #2f80ed;
+    color: #2f3437;
 }
 
-
-QPushButton#btnDownload,
-QPushButton#btnPause
- {
-    padding: 14px 24px; /* 0.875rem * 16 = 14px, 1.5rem * 16 = 24px */
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
-    color: white;
-    border: none;
-    border-radius: 8px; /* 0.5rem * 16 = 8px */
-    font-size: 16px; /* 1rem * 16 = 16px */
-    font-weight: 500;
+/* 💬 提示文字 */
+QLabel#lblDownloadCompleteTitleTip,
+QLabel#lblDownloadThreadTip,
+QLabel#lblDefaultSavepathTip,
+QLabel#lblNameFileRuleTip,
+QLabel#lblOriginFileName,
+QLabel#lblCopyrightTip {
+    font-size: 12px;
+    color: #6b6b6b;
+    font-style: italic;
 }
 
-QPushButton#btnDownload:hover,
-QPushButton#btnPause:hover
-{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+/* ✏️ 输入框 */
+QLineEdit, QPlainTextEdit, QTextEdit {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #ffffff;
+    color: #2f3437;
 }
-
-QPushButton#btnDownload:disabled,
-QPushButton#btnPause:disabled
-{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
-    opacity: 0.7;
+QLineEdit:hover, QPlainTextEdit:hover, QTextEdit:hover {
+    border: 1px solid #2f80ed;
 }
-
-QPushButton#btnCrap {
-    padding: 14px 24px; /* 0.875rem * 16 = 14px, 1.5rem * 16 = 24px */
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3B82F6, stop:1 #2563EB);
-    color: white;
-    border: none;
-    border-radius: 8px; /* 0.5rem * 16 = 8px */
-    font-size: 16px; /* 1rem * 16 = 16px */
-    font-weight: 500;
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus {
+    border: 1px solid #2f80ed;
+    background-color: #f0f7ff;
 }
-
-QPushButton#btnCrap:hover {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
-}
-
-QPushButton#btnCrap:disabled {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
-    opacity: 0.7;
-}
-
-/**---------------------------------------  侧边栏 --------------------------------------------- */
-
-/* ==============================================
-   全局按钮样式统一（含按压动态效果）
-   适用按钮：btnResolve/btnDownloadList/btnDownloadStatus/btnNote/btnVideo/btnSetting/btnAbout
-   ============================================== */
-
-/* ==============================================
-   全局按钮样式统一（含按压动态效果）
-   适用按钮：btnResolve/btnDownloadList/btnDownloadStatus/btnNote/btnVideo/btnSetting/btnAbout
-   ============================================== */
-
-/* 1. 基础状态（所有按钮通用） */
-QPushButton#btnResolve,
-QPushButton#btnDownloadList,
-QPushButton#btnDownloadStatus,
-QPushButton#btnNote,
-QPushButton#btnVideo,
-QPushButton#btnSetting,
-QPushButton#btnAbout {
-    /* 基础布局属性 */
-    padding: 6px 12px; /* 统一内边距，优化点击区域 */
-    border-radius: 8px; /* 统一圆角，保持视觉一致性 */
-    border: none; /* 取消默认边框 */
-    color: white; /* 统一文字颜色 */
-    font-weight: 500; /* 文字加粗，提升辨识度 */
-    
-    /* 主题色渐变（默认未选中态） */
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #3B82F6,  /* 主色-浅 */
-                                stop:1 #2563EB); /* 主色-深 */
-
-
+QLineEdit::placeholder {
+    color: #999999;
 }
 
 
-/* 2. 交互状态 - 悬停（所有按钮通用） */
-QPushButton#btnResolve:hover,
-QPushButton#btnDownloadList:hover,
-QPushButton#btnDownloadStatus:hover,
-QPushButton#btnNote:hover,
-QPushButton#btnVideo:hover,
-QPushButton#btnSetting:hover,
-QPushButton#btnAbout:hover {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #93C5FD,  /* 主色-超浅 */
-                                stop:1 #3B82F6); /* 主色-浅 */
+/* 🔘 通用按钮基础 */
+QPushButton {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 
-/* 3. 交互状态 - 按压（核心动态效果，所有按钮通用） */
-QPushButton#btnResolve:pressed,
-QPushButton#btnDownloadList:pressed,
-QPushButton#btnDownloadStatus:pressed,
-QPushButton#btnNote:pressed,
-QPushButton#btnVideo:pressed,
-QPushButton#btnSetting:pressed,
-QPushButton#btnAbout:pressed {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #1D4ED8,  /* 主色-更深 */
-                                stop:1 #1E40AF); /* 主色-最深 */
-}
-
-
-/* 4. 功能状态 - 选中（所有按钮通用） */
+/* 🔵 主按钮（蓝底白字） */
 QPushButton#btnResolve:checked,
 QPushButton#btnDownloadList:checked,
 QPushButton#btnDownloadStatus:checked,
@@ -182,489 +104,302 @@ QPushButton#btnNote:checked,
 QPushButton#btnVideo:checked,
 QPushButton#btnSetting:checked,
 QPushButton#btnAbout:checked {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #10B981,  /* 成功色-浅 */
-                                stop:1 #059669); /* 成功色-深 */
-}
-
-
-/* 5. 组合状态 - 选中+悬停（所有按钮通用） */
-QPushButton#btnResolve:checked:hover,
-QPushButton#btnDownloadList:checked:hover,
-QPushButton#btnDownloadStatus:checked:hover,
-QPushButton#btnNote:checked:hover,
-QPushButton#btnVideo:checked:hover,
-QPushButton#btnSetting:checked:hover,
-QPushButton#btnAbout:checked:hover {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #34D399,  /* 成功色-超浅 */
-                                stop:1 #10B981); /* 成功色-浅 */
-}
-
-
-/* 6. 组合状态 - 选中+按压（所有按钮通用） */
-QPushButton#btnResolve:checked:pressed,
-QPushButton#btnDownloadList:checked:pressed,
-QPushButton#btnDownloadStatus:checked:pressed,
-QPushButton#btnNote:checked:pressed,
-QPushButton#btnVideo:checked:pressed,
-QPushButton#btnSetting:checked:pressed,
-QPushButton#btnAbout:checked:pressed {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #059669,  /* 成功色-深 */
-                                stop:1 #065F46); /* 成功色-最深 */
-}
-
-
-/* 7. 功能状态 - 禁用（所有按钮通用） */
-QPushButton#btnResolve:disabled,
-QPushButton#btnDownloadList:disabled,
-QPushButton#btnDownloadStatus:disabled,
-QPushButton#btnNote:disabled,
-QPushButton#btnVideo:disabled,
-QPushButton#btnSetting:disabled,
-QPushButton#btnAbout:disabled {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #4B5563,  /* 灰色-中 */
-                                stop:1 #374151); /* 灰色-深 */
-    opacity: 0.7; /* 降低透明度，明确禁用状态 */
-}
-
-/** -------------- */
-Line#lLeft1
-{
-	border: 1px solid #93C5FD;
-}
-Line#lLeft2
-{
-	border: 1px solid #93C5FD;
-}
-
-/** ----------------------------------- Footscript ----------------------------------------------------- */
-
-QFrame#frmFootscript
-{
-    background-color: #1F2937; /* var(--gray-800) */
-    border-top: 1px solid #374151; /* var(--gray-700) */
-}
-
-/* 版本信息标签 */
-QLabel#lblAppVersion
-{
-    color: #93C5FD; /* var(--primary-light) */
-	background-color: none;
-    font-size: 13px;
-}
-
-/* 版权信息标签 */
-QLabel#lblCopyright {
-    color: #9CA3AF; /* var(--gray-400) */
-	background-color: none;
-    font-size: 12px;
-}
-
-/* 版权提示标签 */
-QLabel#lblCopyrightTip {
-    color: #6B7280; /* var(--gray-500) */
-	background-color: none;
-    font-size: 11px;
-}
-
-/** ----- */
-
- 
-
-/* 路径选择按钮（主按钮） */
-QPushButton#btnBrowseDir {
-    background-color: #3B82F6; /* var(--primary) */
-    color: white;
+    background-color: #2f80ed;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
-    font-size: 13px;
-    padding: 4px 10px;
-    margin-left: 8px;
+}
+QPushButton#btnDownload:hover {
+    background-color: #1a56db;
+}
+QPushButton#btnDownload:pressed {
+    background-color: #174bb5;
 }
 
-QPushButton#btnBrowseDir:hover
-{   
-	background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #93C5FD, stop:1 #3B82F6);
+/* 🔵 主按钮（蓝底白字） */
+QPushButton#btnDownload,
+QPushButton#btnPause,
+QPushButton#btnNoteEdit,
+QPushButton#btnNotePreview,
+QPushButton#btnNoteSplit,
+QPushButton#btnBrowseDir,
+QPushButton#pushButton_2, /* Setting 确认 */
+QPushButton#pushButton_3, /* Setting 取消 */
+QPushButton#pushButton_4,
+QPushButton#pushButton_5 {
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
 }
 
-QPushButton#btnBrowseDir:disabled
-{
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #4B5563, stop:1 #374151);
-    opacity: 0.7;
+
+QPushButton#btnDownload:hover,
+QPushButton#btnPause:hover,
+QPushButton#btnNoteEdit:hover,
+QPushButton#btnNotePreview:hover,
+QPushButton#btnNoteSplit:hover,
+QPushButton#btnBrowseDir:hover,
+QPushButton#pushButton_2:hover,
+QPushButton#pushButton_3:hover,
+QPushButton#pushButton_4:hover,
+QPushButton#pushButton_5:hover {
+    background-color: #1a56db;
+}
+QPushButton#btnDownload:pressed,
+QPushButton#btnPause:pressed,
+QPushButton#btnNoteEdit:pressed,
+QPushButton#btnNotePreview:pressed,
+QPushButton#btnNoteSplit:pressed,
+QPushButton#btnBrowseDir:pressed,
+QPushButton#pushButton_2:pressed,
+QPushButton#pushButton_3:pressed,
+QPushButton#pushButton_4:pressed,
+QPushButton#pushButton_5:pressed {
+    background-color: #174bb5;
 }
 
 
-/**  -------------------------------------- Log ---------------------------------------------*/
+/* ⚪ 次按钮（白底蓝字） */
+QPushButton#btnResolve,
+QPushButton#btnDownloadList,
+QPushButton#btnDownloadStatus,
+QPushButton#btnNote,
+QPushButton#btnVideo,
+QPushButton#btnSetting,
+QPushButton#btnAbout,
+QPushButton#btnDownload,
+QPushButton#btnPause,
+QPushButton#btnCrap {
+    background-color: #ffffff;
+    color: #2f80ed;
+    border: 1px solid #2f80ed;
+}
 
+QPushButton#btnResolve:hover,
+QPushButton#btnPause:hover,
+QPushButton#btnDownloadList:hover,
+QPushButton#btnDownloadStatus:hover,
+QPushButton#btnNote:hover,
+QPushButton#btnVideo:hover,
+QPushButton#btnSetting:hover,
+QPushButton#btnAbout:hover {
+    background-color: #f0f7ff;
+}
+QPushButton#btnResolve:pressed,
+QPushButton#btnPause:pressed,
+QPushButton#btnDownloadList:pressed,
+QPushButton#btnDownloadStatus:pressed,
+QPushButton#btnNote:pressed,
+QPushButton#btnVideo:pressed,
+QPushButton#btnSetting:pressed,
+QPushButton#btnAbout:pressed {
+    background-color: #dbe9ff;
+}
 
-/* 清除日志按钮样式 */
+/* ❌ 危险按钮 */
 QPushButton#btnClearLog {
-    /* 基础样式 */
-    background-color: #374151; /* var(--gray-700) */
-    color: #9CA3AF; /* var(--gray-400) */
-    border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 13px;
-    
-    /* 图标与文字间距 */
-    spacing: 4px;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
 }
-
-/* 悬停状态 - 提示用户可交互 */
 QPushButton#btnClearLog:hover {
-    background-color: #4B5563; /* var(--gray-600) */
-    color: #EF4444; /* var(--danger) - 警告色提示风险操作 */
-    border-color: rgba(239, 68, 68, 0.3); /* 轻微危险色边框 */
+    background-color: #fee2e2;
 }
-
-/* 按下状态 - 强化反馈 */
 QPushButton#btnClearLog:pressed {
-    background-color: #1F2937; /* var(--gray-800) */
-    color: #EF4444; /* var(--danger) */
-    padding-top: 5px;
-    padding-bottom: 3px; /* 轻微位移模拟按压感 */
+    background-color: #fecaca;
 }
 
-/* 禁用状态 */
-QPushButton#btnClearLog:disabled
-{
-    background-color: #374151; /* var(--gray-700) */
-    color: #6B7280; /* var(--gray-500) */
-    opacity: 0.7;
-}
-
-/* 带图标的样式扩展 */
-QPushButton#btnClearLog::icon
-{
-    width: 16px;
-    height: 16px;
-    color: #93C5FD;
-}
-
-QPushButton#btnClearLog:hover::icon 
-{
-    color: #EF4444; /* 悬停时图标同步变色 */
-}
-
-
-QFrame#frmLog,
-QTextBrowser#tbwLog ,
-QFrame#frmTbw
-{
-    background-color: rgba(31, 41, 55, 0.5);
-    border: 1px solid #374151;
-    border-radius: 12px; /* 0.75rem * 16 = 12px */
-    padding: 20px; /* 1.25rem * 16 = 20px */
-}
-
-QFrame#frmLog:hover,
-QFrame#frmTbw:hover
-{
-    border-color: #3B82F6;
-}
-
-QLabel#lblLogTitle,
-QLabel#lblProgressTitle,
-QLabel#lblProgress
-{
-	background-color: none;
-}
-QLabel#lblLogTitle,
-QLabel#lblProgressTitle,
-QLabel#lblProgress
-{
-	color: #D1D5DB;	/* var(--gray-300) */
-}
-
-/* QProgressBar 样式 */
+/* 📊 进度条 */
 QProgressBar#pbarDownload {
-    background-color: #374151; /* var(--gray-700) */
-    border-radius: 4px;
-	color: #9CA3AF;  /* var(--gray-400) */
-    text-align: right;
+    background-color: #f1f1f0;
+    border-radius: 6px;
+    color: #2f3437;
+    text-align: center;
 }
-
 QProgressBar#pbarDownload::chunk {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
-                                stop:0 #10B981, stop:1 #059669); /* var(--success) to var(--success-dark) */
-    border-radius: 4px;
+    background-color: #2f80ed;
+    border-radius: 6px;
 }
 
-/**/
-QLineEdit#edtSaveDir,
-QLineEdit#edtPrefixFileName,
-QLineEdit#edtSuffixFileName
-{
-
-    background-color: #374151; /* var(--gray-700) */
-    border: 1px solid #4B5563; /* var(--gray-600) */
-    border-radius: 4px;
-    color: #F3F4F6; /* var(--gray-100) */
-    font-size: 13px;
-    padding: 4px 8px;
-    selection-background-color: #3B82F6; /* var(--primary) */
-}
-
-
-QTextBrowser#tbwLog {
-    font-family: &quot;Consolas&quot;, &quot;Monaco&quot;, &quot;Menlo&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace;
-    font-size: 10pt;
-}
-
-/* ================== Settint ================== */
-QTabWidget#tabSetting
-::pane {
-    border: 1px solid #4B5563;
-    border-radius: 8px;
-    background-color: #1F2937;
-}
-
-/* 普通 tab 样式 */
+/* 🗂️ Tab 样式 */
 QTabBar::tab {
-    background: #374151;
-    color: #9CA3AF;
-    padding: 10px 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    background: #f7f6f3;
+    color: #6b6b6b;
+    padding: 8px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
-
-/* 鼠标悬停高亮效果（可选） */
-QTabBar::tab:hover {
-    background: #4B5563;
-	color: #93C5FD;
-}
-
 QTabBar::tab:selected {
-    background: #1F2937;
-    color: #3B82F6;
-    border-bottom: 2px solid #3B82F6;
+    background: #ffffff;
+    color: #2f80ed;
+    font-weight: bold;
+    border-bottom: 2px solid #2f80ed;
+}
+QTabBar::tab:hover {
+    background: #f0f7ff;
+    color: #2f3437;
 }
 
-/* =========================================
-   QComboBox 完整样式模板
-========================================= */
-
-/* QComboBox 容器 */
-QComboBox#cmbThreads {
-    padding: 4px 8px;                  /* 内边距 */
-    background-color: #1F2937;         /* 背景色 */
-    border: 1px solid #4B5563;         /* 默认边框 */
-    border-radius: 6px;                /* 圆角 */
-    color: #F3F4F6;                    /* 文字颜色 */
-    font-size: 13px;                    /* 字体大小 */
-    min-width: 180px;                   /* 最小宽度 */
+/* 🌳 树视图 */
+QTreeView#tvwNoteFile {
+    background-color: #ffffff;
+    alternate-background-color: #f9fafb;
+    color: #2f3437;
+    border: 1px solid #e1e1e0;
+}
+QTreeView#tvwNoteFile::item:selected {
+    background-color: #2f80ed;
+    color: #ffffff;
+}
+QTreeView#tvwNoteFile::item:hover {
+    background-color: #f0f7ff;
 }
 
-/* QComboBox 获得焦点 */
-QComboBox#cmbThreads:focus {
-    border: 1px solid #3B82F6;         /* 焦点边框 */
+/* 📋 表格视图 */
+QTableView, QTableWidget {
+    border: 1px solid #d4d4d4;
+    gridline-color: #e1e1e0;
+    background-color: #ffffff;
+    alternate-background-color: #f9fafb;
+    selection-background-color: #2f80ed;
+    selection-color: #ffffff;
 }
 
-/* 下拉箭头容器 */
-QComboBox#cmbThreads::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 20px;
-    border-left: none;
+/* 🔽 下拉框 */
+QComboBox {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #ffffff;
+    color: #000000;                 /* 关闭状态文字颜色 */
+}
+
+QComboBox:hover {
+    border: 1px solid #2f80ed;
+}
+
+QComboBox::drop-down {
+    border-left: 1px solid #d4d4d4;
 }
 
 /* 下拉箭头图标 */
-QComboBox#cmbThreads::down-arrow {
-    image: url(:/icons/down-arrow.png); /* 替换为你的箭头图标路径 */
+QComboBox::down-arrow {
+    image: url(:/icons/down-arrow.png);  /* 你的资源路径 */
     width: 12px;
     height: 12px;
 }
 
-/* 下拉列表 */
-QComboBox#cmbThreads QAbstractItemView {
-    background-color: #1F2937;         /* 列表背景色 */
-    color: #F3F4F6;                    /* 列表文字 */
-    border: 1px solid #4B5563;         /* 列表边框 */
-    outline: 0;                         /* 去掉默认焦点框 */
+/* 下拉面板本体（视图容器） */
+QComboBox QAbstractItemView {
+    background: #ffffff;            /* 面板背景 */
+    outline: 0;
+    border: 1px solid #d4d4d4;
 }
 
-/* 鼠标悬停项高亮 */
-QComboBox#cmbThreads QAbstractItemView::item:hover {
-    background-color: #2563EB;         /* 悬停颜色 */
-    color: #FFFFFF;
-}
-
-/* 当前选中项背景 */
-QComboBox#cmbThreads QAbstractItemView::item:selected {
-    background-color: #3B82F6;         /* 当前选中项背景 */
-    color: #FFFFFF;                     /* 文字颜色 */
-}
-
-
-/* ================== Settint Label ================== */
-
-QLabel#lblBasicTitle,
-QLabel#lblNameFileTitle
-{
-    font-size: 16px;               /* 字体大小 */
-    font-weight: 600;              /* 粗体 */
-    color: #E5E7EB;                /* 对应 var(--gray-200) */
-    margin-bottom: 16px;           /* 下边距 */
-    padding-left: 8px;             /* 左内边距 */
-    border-left: 3px solid #3B82F6; /* 左边框，颜色对应 var(--primary) */
-}
-
-QLabel#lblDownloadThreadTitle,
-QLabel#lblDownloadCompleteTitle,
-QLabel#lblDefaultSavepath,
-QLabel#lblNameFileRule
-{
-    font-size: 14px;       /* 字体大小 */
-    color: #F3F4F6;        /* 对应 var(--gray-100) */
-}
-
-QLabel#lblDownloadCompleteTitleTip,
-QLabel#lblDownloadThreadTip,
-QLabel#lblDefaultSavepathTip,
-QLabel#lblNameFileRuleTip,
-QLabel#lblOriginFileName
-{
-    font-size: 12px;      /* 字体大小 */
-    color: #9CA3AF;       /* 对应 var(--gray-400) 的灰色 */
-}
-
-QFrame#frmDownloadSettingThread,
-QFrame#frmDownloadSettingBasic,
-QFrame#frmDownloadSettingName,
-QFrame#frmDownloadSettingComplete
-{
-    border-bottom: 2px solid #374151; /* 下边框 2px，颜色 #374151 */
-    /* 可选：去掉其它边框 */
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
-/* ================== iOS 风格滑块 ================== */
-QCheckBox#chkOpenDir,
-QCheckBox#chkPlaySound {
-    spacing: 8px;  /* 文字和滑块间距 */
-    font-size: 13px;
-    color: #F3F4F6;
-}
-
-/* 隐藏默认方框，滑块容器 */
-QCheckBox#chkOpenDir::indicator,
-QCheckBox#chkPlaySound::indicator {
-    width: 40px;
-    height: 20px;
-    border-radius: 10px;
-    background-color: #ccc; /* 默认背景灰色 */
-    position: relative;
-    transition: background 0.2s;
-}
-
-/* 滑块圆点 */
-QCheckBox#chkOpenDir::indicator:before,
-QCheckBox#chkPlaySound::indicator:before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-    background: white;
-    transition: left 0.2s;
-}
-
-/* 选中状态背景颜色 */
-QCheckBox#chkOpenDir::indicator:checked,
-QCheckBox#chkPlaySound::indicator:checked {
-    background-color: #3B82F6; /* 蓝色背景 */
-}
-
-/* 滑块圆点移动 */
-QCheckBox#chkOpenDir::indicator:checked:before,
-QCheckBox#chkPlaySound::indicator:checked:before {
-    left: 22px; /* 滑块滑动到右边 */
-}
-
-/**  */
-QTreeView#tvwNoteFile {
-    background-color: #1F2937;      /* gray-800 */
-    alternate-background-color: #111827; /* gray-900 */
-    color: #F3F4F6;                /* gray-100 */
-    border: 1px solid #374151;     /* gray-700 */
-    font-size: 14px;
-    show-decoration-selected: 1;
-}
-
-QTreeView#tvwNoteFile::item {
+/* 列表项的默认/悬停/选中状态（关键：给 ::item 明确设色） */
+QComboBox QAbstractItemView::item {
+    color: #000000;                 /* 非选中项文字 */
     padding: 4px 8px;
-    border: none;
 }
 
-QTreeView#tvwNoteFile::item:hover {
-    background-color: #374151;  /* gray-700 */
-    color: #FFFFFF;
+QComboBox QAbstractItemView::item:hover {
+    background: #f0f7ff;
+    color: #000000;
 }
 
-QTreeView#tvwNoteFile::item:selected {
-    background-color: #2563EB;  /* primary-dark */
-    color: #FFFFFF;
+QComboBox QAbstractItemView::item:selected {
+    background: #2f80ed;           /* 选中：蓝底白字 */
+    color: #ffffff;
 }
 
-QTreeView#tvwNoteFile::branch {
-    background: transparent;
+/* 如果你的项目里有指定 objectName（如 cmbThreads），一并覆盖 */
+QComboBox#cmbThreads,
+QComboBox#cmbThreads QAbstractItemView,
+QComboBox#cmbThreads QAbstractItemView::item,
+QComboBox#cmbThreads QAbstractItemView::item:hover,
+QComboBox#cmbThreads QAbstractItemView::item:selected { /* 占位以提高权重 */ }
+
+/* 可选：可编辑的 ComboBox 内的行编辑器 */
+QComboBox:editable QLineEdit {
+    background: #ffffff;
+    color: #000000;
+    selection-background-color: #2f80ed;
+    selection-color: #ffffff;
 }
 
-QTreeView#tvwNoteFile::branch:has-children:!has-siblings:closed,
-QTreeView#tvwNoteFile::branch:closed:has-children:has-siblings {
-    border-image: none;
-    image: url(:/icons/folder-closed.png);
+
+
+
+/* 🛠️ 工具按钮 */
+QToolButton {
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+QToolButton:hover {
+    background-color: #f0f7ff;
+    border: 1px solid #2f80ed;
+}
+QToolButton:pressed {
+    background-color: #dbe9ff;
 }
 
-QTreeView#tvwNoteFile::branch:open:has-children:!has-siblings,
-QTreeView#tvwNoteFile::branch:open:has-children:has-siblings {
-    border-image: none;
-    image: url(:/icons/folder-open.png);
+/* 📑 只读 QTextBrowser */
+QTextBrowser#tbwLog {
+    background-color: #ffffff;
+    border: 1px solid #e1e1e0;
+    border-radius: 6px;
+    color: #2f3437;
 }
 
-QTreeView#tvwNoteFile QHeaderView::section {
-    background-color: #374151;  /* gray-700 */
-    color: #F9FAFB;             /* gray-50 */
-    padding: 4px;
-    border: none;
-    border-right: 1px solid #4B5563; /* gray-600 */
+
+/* 滚动条样式 */
+QScrollBar:vertical {
+    width: 12px;
+    background: #F3F4F6;
+    border-radius: 6px;
 }
 
-QTreeView#tvwNoteFile QScrollBar:vertical {
-    border: none;
-    background: #111827;
-    width: 10px;
-    margin: 0px;
-}
-
-QTreeView#tvwNoteFile QScrollBar::handle:vertical {
-    background: #374151;
+QScrollBar::handle:vertical {
+    background: #2563EB;
     min-height: 20px;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
-QTreeView#tvwNoteFile QScrollBar::handle:vertical:hover {
-    background: #4B5563;
+QScrollBar::handle:vertical:hover {
+    background: #1D4ED8;
 }
 
-QTreeView#tvwNoteFile QScrollBar::add-line:vertical,
-QTreeView#tvwNoteFile QScrollBar::sub-line:vertical {
+QScrollBar::handle:vertical:pressed {
+    background: #1E40AF;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
     height: 0px;
 }
 
-QPlainTextEdit
-{
-	 background-color: #9CA3AF;
+QScrollBar:horizontal {
+    height: 12px;
+    background: #F3F4F6;
 }
 
+QScrollBar::handle:horizontal {
+    background: #2563EB;
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #1D4ED8;
+}
+
+QScrollBar::handle:horizontal:pressed {
+    background: #1E40AF;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
 </string>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
@@ -712,7 +447,7 @@ QPlainTextEdit
          <property name="font">
           <font>
            <family>-apple-system</family>
-           <pointsize>24</pointsize>
+           <pointsize>-1</pointsize>
            <italic>true</italic>
            <bold>true</bold>
           </font>
@@ -1222,6 +957,9 @@ QPlainTextEdit
     </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="stwMain">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
       <widget class="QWidget" name="pageResolve">
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
@@ -1280,106 +1018,6 @@ QPlainTextEdit
                 <property name="bottomMargin">
                  <number>0</number>
                 </property>
-                <item>
-                 <widget class="QFrame" name="frmProgress">
-                  <property name="minimumSize">
-                   <size>
-                    <width>100</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::Shape::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Shadow::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_2">
-                   <item>
-                    <widget class="QFrame" name="frame_5">
-                     <property name="frameShape">
-                      <enum>QFrame::Shape::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Shadow::Raised</enum>
-                     </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_16" stretch="2,3">
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_13">
-                        <item>
-                         <spacer name="horizontalSpacer_6">
-                          <property name="orientation">
-                           <enum>Qt::Orientation::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="btnDownload">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
-                          <property name="text">
-                           <string>开始下载</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="btnPause">
-                          <property name="text">
-                           <string>暂停下载</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="frame_7">
-                        <property name="frameShape">
-                         <enum>QFrame::Shape::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Shadow::Raised</enum>
-                        </property>
-                        <widget class="QLabel" name="label_2">
-                         <property name="geometry">
-                          <rect>
-                           <x>20</x>
-                           <y>70</y>
-                           <width>71</width>
-                           <height>16</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>TextLabel</string>
-                         </property>
-                        </widget>
-                        <widget class="QPushButton" name="pushButton_4">
-                         <property name="geometry">
-                          <rect>
-                           <x>210</x>
-                           <y>60</y>
-                           <width>101</width>
-                           <height>31</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>清空下载记录</string>
-                         </property>
-                        </widget>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
                </layout>
               </widget>
              </item>
@@ -1416,7 +1054,9 @@ QPlainTextEdit
                       <widget class="QLabel" name="lblLogTitle">
                        <property name="font">
                         <font>
-                         <bold>true</bold>
+                         <family>-apple-system</family>
+                         <pointsize>-1</pointsize>
+                         <fontweight>DemiBold</fontweight>
                         </font>
                        </property>
                        <property name="text">
@@ -1491,8 +1131,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Consolas','Monaco','Menlo','DejaVu Sans Mono','Liberation Mono','Courier New','monospace'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial','sans-serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Consolas','Monaco','Menlo','DejaVu Sans Mono','Liberation Mono','Courier New','monospace'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -1601,16 +1241,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </spacer>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox">
+               <widget class="QCheckBox" name="chkSelectAll">
                 <property name="text">
                  <string>全部选中</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QCheckBox" name="chkCancelAll">
+                <property name="text">
+                 <string>取消全选</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnDownload">
                 <property name="text">
                  <string>开始下载</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnPause">
+                <property name="text">
+                 <string>暂停下载</string>
                 </property>
                </widget>
               </item>
@@ -1807,10 +1461,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <widget class="QStackedWidget" name="stwNote">
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="pageNoteEdit">
-                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                  <layout class="QVBoxLayout" name="verticalLayout_9" stretch="1,9">
                    <item>
                     <widget class="QFrame" name="frmPageNoteEditBanner">
                      <property name="frameShape">
@@ -1918,13 +1572,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QWebEngineView" name="webEngineView">
-                     <property name="url">
-                      <url>
-                       <string>about:blank</string>
-                      </url>
-                     </property>
-                    </widget>
+                    <widget class="QTextBrowser" name="tedtNotePreview"/>
                    </item>
                   </layout>
                  </widget>
@@ -2146,9 +1794,63 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </item>
                   <item>
                    <widget class="QComboBox" name="cmbThreads">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>1线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>2线程</string>
+                     </property>
+                    </item>
                     <item>
                      <property name="text">
                       <string>3线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>4线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>5线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>6线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>7线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>8线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>9线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>10线程</string>
                      </property>
                     </item>
                    </widget>
@@ -2313,7 +2015,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                     <property name="text">
-                     <string>播放提示音</string>
+                     <string>开启提示音</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -2331,27 +2036,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <property name="text">
                      <string>自动打开目录</string>
                     </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </item>
                  </layout>
                 </widget>
                </item>
               </layout>
-             </widget>
-             <widget class="QWidget" name="tabStyleSetting">
-              <attribute name="title">
-               <string>Tab 2</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tabSystemSetting">
-              <attribute name="title">
-               <string>页</string>
-              </attribute>
-             </widget>
-             <widget class="QWidget" name="tabHelpSetting">
-              <attribute name="title">
-               <string>页</string>
-              </attribute>
              </widget>
             </widget>
            </item>
@@ -2371,7 +2064,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <spacer name="horizontalSpacer_5">
+               <spacer name="spcHBtnSetting">
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -2384,14 +2077,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="btnResetSetting">
                 <property name="text">
                  <string>重置</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="btnSaveSetting">
                 <property name="text">
                  <string>保存设置</string>
                 </property>
@@ -2424,17 +2117,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QWebEngineView</class>
-   <extends>QWidget</extends>
-   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
-  </customwidget>
-  <customwidget>
    <class>QMarkdownTextEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>qmarkdowntextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>

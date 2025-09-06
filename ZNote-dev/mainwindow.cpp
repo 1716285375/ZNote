@@ -110,10 +110,13 @@ void MainWindow::setupConnection()
 
     connect(ui->btnNoteEdit, &QPushButton::clicked, this, [this]() {
         ui->stwNote->setCurrentWidget(ui->pageNoteEdit);
+        fileBrowser->setDisplayMode(false);
     });
 
     connect(ui->btnNotePreview, &QPushButton::clicked, this, [this]() {
         ui->stwNote->setCurrentWidget(ui->pageNotePreview);
+        fileBrowser->setDisplayMode(true);
+
     });
 
     connect(ui->cmbThreads, QOverload<int>::of(&QComboBox::currentIndexChanged), &config, [this](int index) {
@@ -123,6 +126,9 @@ void MainWindow::setupConnection()
 		qDebug() << "Set thread count to" << threads;
 	});
 
+    connect(ui->btnSaveSetting, &QPushButton::clicked, this, [this]() {
+        config.save();
+    });
 }
 
 void MainWindow::init()
@@ -252,8 +258,9 @@ void MainWindow::initUI()
 	modelDownloadList->setHorizontalHeaderLabels({ "选择", "标题", "分辨率", "音频", "字幕" });
 	ui->tblDownloadList->setModel(modelDownloadList);
 
-	ui->webEngineView->setAttribute(Qt::WA_OpaquePaintEvent);
-	ui->webEngineView->setAttribute(Qt::WA_NoSystemBackground);
+    // markdown edit
+    ui->tedtNotePreview->setReadOnly(true);
+    ui->stwNote->setCurrentWidget(ui->pageNoteEdit);
 
 	// 文件浏览器
 	ui->tvwNoteFile->setHeaderHidden(true);         // 隐藏表头，像 IDE 文件树一样
@@ -264,7 +271,7 @@ void MainWindow::initUI()
 	fileBrowser->setTreeView(ui->tvwNoteFile);
     fileBrowser->setRootPath(config.getValue("download.defaultPath").toString());
     fileBrowser->setNameFilters({ "*.txt", "*.md" }); // 可选 
-    //fileBrowser->setWebView(ui->webEngineView);
     fileBrowser->setTextEdit(ui->tedtNote);
+    fileBrowser->setTextBrowser(ui->tedtNotePreview);
 }
 

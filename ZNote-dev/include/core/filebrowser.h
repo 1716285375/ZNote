@@ -1,42 +1,30 @@
 #pragma once
-
-#include "qmarkdowntextedit.h"
-
 #include <QObject>
 #include <QFileSystemModel>
 #include <QTreeView>
+#include <QTextBrowser>
 #include <QMenu>
-#include <QAction>
-#include <QPlainTextEdit>
-#include <QWebEngineView>
+#include "qmarkdowntextedit.h"
 
-
-class FileBrowser  : public QObject
+class FileBrowser : public QObject
 {
 	Q_OBJECT
-
 public:
-	explicit FileBrowser(QObject *parent = nullptr);
+	explicit FileBrowser(QObject* parent = nullptr);
 	~FileBrowser();
 
 	void setTreeView(QTreeView* view);
-	void setWebView(QWebEngineView* view);
-	void setTextEdit(QMarkdownTextEdit * edit);
+	void setTextEdit(QMarkdownTextEdit* edit);
+	void setTextBrowser(QTextBrowser* browser);
 
-	
 	void setRootPath(const QString& path);
-
 	void setNameFilters(const QStringList& filters);
+	void setDisplayMode(bool preview);
 
-	void setFilter(QDir::Filters filters);
+	bool saveCurrentFile();
 
 private slots:
-	void onDoubleClicked(const QModelIndex& index);
 	void onClicked(const QModelIndex& index);
-	void openFileInWebView(const QString& filePath);
-
-	void openFileInTextEdit(const QString& filePath);
-
 	void onContextMenuRequested(const QPoint& pos);
 	void onActionOpen();
 	void onActionOpenDir();
@@ -44,21 +32,22 @@ private slots:
 	void onActionRename();
 
 private:
-	bool saveCurrentFile();
+	void displayCurrentFile();
+	void openFileInTextEdit(const QString& filePath);
+	void openFileInTextBrowser(const QString& filePath);
 
-	QFileSystemModel* model_;
+private:
 	QTreeView* treeView_;
-	QWebEngineView* webView_;
 	QMarkdownTextEdit* textEdit_;
+	QTextBrowser* textBrowser_;
+	QFileSystemModel* model_;
 	QMenu* contextMenu_;
 	QAction* actionOpen_;
 	QAction* actionOpenDir_;
 	QAction* actionDelete_;
 	QAction* actionRename_;
-	QString rootPath_;
-	QString rightClickedPath;
-
 
 	QString currentFilePath_;
+	QString rightClickedPath_;
+	bool isPreviewMode_;
 };
-
