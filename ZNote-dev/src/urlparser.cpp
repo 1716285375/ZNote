@@ -66,7 +66,7 @@ UrlParser::UrlParser(QObject *parent)
                         single.url = root.value("webpage_url").toString();
                         single.wepagebUrlBasename = root.value("webpage_url_basename").toString();
                         single.playlistCount = 1;
-                        single.index = 1;
+                        single.index = 0;
                         single.type = UrlType::Single;
                         results.append(single);
                     }
@@ -88,14 +88,10 @@ UrlParser::UrlParser(QObject *parent)
 void UrlParser::parse(const QString &url)
 {
     currentUrl = url;
+    QStringList args = znote::utils::buildCommand(url, CommandType::ExtractPlaylist);
 
-    QStringList args;
-    // args << "--skip-download";
-    // args << "--print";
-    // args << "%(webpage_url)s";
-    args << "--flat-playlist";
-    args << "-J";
-    args << url;
+    // debug
+    znote::utils::printCommand(args);
 
     process->start("yt-dlp.exe", args);
 

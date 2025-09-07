@@ -21,7 +21,6 @@ struct VideoEntry {
 	QString title;
 	QString url;
 	QVector<VideoFormat> videoFormats;
-	QVector<VideoFormat> audioFormats;
 	QMap<QString, QString> subtitles; // lang -> url
 };
 
@@ -29,6 +28,8 @@ struct DownloadTask
 {
 	QString url;
 	int index = 0;
+	int playlistCount;
+	UrlType type;
 	QString savePath;
 	QString playlistTitle;
 	QString resolution;
@@ -38,9 +39,27 @@ struct DownloadTask
 	bool subtitles = false;
 	VideoEntry video;
 };
+
+enum class UrlType
+{
+	Unknown = -1,
+	Lists = 0,
+	Single
+};
+
+struct ParsedEntry
+{
+	QString id;
+	QString url;
+	QString savePath;
+	QString wepagebUrlBasename;
+	QString playlistTitle;
+	UrlType type;
+	int index;
+	int playlistCount;
+};
+
 // 在结构体定义之后，添加 Q_DECLARE_METATYPE
-Q_DECLARE_METATYPE(VideoFormat)
-Q_DECLARE_METATYPE(VideoEntry)
 Q_DECLARE_METATYPE(DownloadTask)
 
 

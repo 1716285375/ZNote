@@ -23,6 +23,11 @@ public:
 
 	bool saveCurrentFile();
 
+signals:
+
+	void onFileChanged(QString file);
+	void onDirChanged(QString dir);
+
 private slots:
 	void onClicked(const QModelIndex& index);
 	void onContextMenuRequested(const QPoint& pos);
@@ -30,6 +35,8 @@ private slots:
 	void onActionOpenDir();
 	void onActionDelete();
 	void onActionRename();
+
+
 
 private:
 	void displayCurrentFile();

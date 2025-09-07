@@ -13,9 +13,11 @@ class ComboBoxDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 public:
-    ComboBoxDelegate(QObject *parent = nullptr);
+    explicit ComboBoxDelegate(QObject *parent = nullptr);
 
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const override;
+
+    void setItems(QStringList items);
 
     void setEditorData(QWidget* editor, const QModelIndex &index) const override;
 

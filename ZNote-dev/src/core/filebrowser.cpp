@@ -66,6 +66,9 @@ void FileBrowser::setRootPath(const QString& path)
 
 	QModelIndex rootIndex = model_->setRootPath(path);
 	treeView_->setRootIndex(rootIndex);
+
+	emit onDirChanged(model_->rootPath());
+
 }
 
 void FileBrowser::setNameFilters(const QStringList& filters)
@@ -97,6 +100,7 @@ void FileBrowser::onClicked(const QModelIndex& index)
 	if (model_->isDir(index)) return;
 
 	currentFilePath_ = path;
+	emit onFileChanged(currentFilePath_);
 	displayCurrentFile();
 }
 
@@ -107,7 +111,6 @@ void FileBrowser::openFileInTextEdit(const QString& filePath)
 
 	QString content = file.readAll();
 	if (textEdit_) textEdit_->setPlainText(content);
-	currentFilePath_ = filePath;
 }
 
 void FileBrowser::openFileInTextBrowser(const QString& filePath)
@@ -117,7 +120,6 @@ void FileBrowser::openFileInTextBrowser(const QString& filePath)
 
 	QString content = file.readAll();
 	if (textBrowser_) textBrowser_->setHtml(FileResolve::markdownToHtml(content));
-	currentFilePath_ = filePath;
 }
 
 void FileBrowser::onContextMenuRequested(const QPoint& pos)

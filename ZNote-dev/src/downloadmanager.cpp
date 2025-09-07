@@ -2,8 +2,11 @@
 #include "videodownloader.h"
 #include "historymanager.h"
 #include "configmanager.h"
+#include "resolvethreadpool.h"
+#include "misc.h"
 
 #include <QMessageBox>
+#include <QDebug>
 
 DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
@@ -22,31 +25,38 @@ void DownloadManager::parseUrl(const QString &url, const QString &savePath)
 
     // 解析成功
     connect(parser, &UrlParser::urlParsed, this, [this, savePath, parser](const QList<ParsedEntry> &entries) {
+		QMutexLocker locker(&mutex);
+		totalTasks += entries.size();
+
+		QMessageBox::information(
+			nullptr,
+			tr("解析情况"),
+			tr("本次成功解析了 %1 个视频").arg(entries.size())
+		);
+
+		// 更新任务进度
+		emit taskProgress(doneTasks, 1.0f * doneTasks / totalTasks);
+
+		// 删除 parser 对象
+		parser->deleteLater();
+
+        //qDebug() << "download.threadCount: " << ConfigManager::instance().getValue("download.threadCount").toInt();
+
+        ResolveThreadPool* resolvePool = new ResolveThreadPool(ConfigManager::instance().getValue("download.threadCount").toInt(), this);
+        connect(resolvePool, &ResolveThreadPool::taskFinished, [](const DownloadTask &task) {
+            znote::utils::printDownloadTask(task);
+        });
+
+		connect(resolvePool, &ResolveThreadPool::taskError, [](const QString &err) {
+
+		});
+
         for (const ParsedEntry &entry : entries) {
-            DownloadTask task;
-            task.url = entry.url;
-            task.savePath = savePath;
-            task.playlistTitle = entry.playlistTitle;
-            task.index = entry.index;
-            // 应用配置参数
-            emit logMessage("解析成功: " + task.url + " 加入下载队列");
-            addTask(task);
+            resolvePool->addResolveTask(entry);
+            //qDebug() << "resolvePool->addResolveTask(entry) ";
+            //znote::utils::printParsedEntry(entry);
+
         }
-
-        QMutexLocker locker(&mutex);
-        totalTasks += entries.size();
-
-        QMessageBox::information(
-            nullptr,
-            tr("解析情况"),
-            tr("本次成功解析了 %1 个视频").arg(entries.size())
-            );
-
-
-
-        emit taskProgress(doneTasks, 1.0f * doneTasks / totalTasks);
-
-        parser->deleteLater(); // 解析完成后销毁
     });
 
     // 日志输出
@@ -67,6 +77,13 @@ void DownloadManager::addTask(const DownloadTask task) {
     queue->enqueue(task);
 }
 
+void DownloadManager::addTasks(const QList<DownloadTask> tasks)
+{
+    for (const auto& t : tasks) {
+        addTask(t);
+    }
+}
+
 void DownloadManager::start() {
     queue->startQueue();
 }
@@ -75,10 +92,6 @@ void DownloadManager::pause() {
     queue->pauseQueue();
 }
 
-//QVector<DownloadHistoryItem> DownloadManager::getHistoryTasks() const
-//{
-//    return history->getHistory();
-//}
 
 void DownloadManager::onTaskFinished(const DownloadTask &task) {
     DownloadHistoryItem item;

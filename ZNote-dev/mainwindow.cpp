@@ -9,6 +9,7 @@
 #include <QIcon>
 #include <QDir>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QSignalBlocker>
 #include <QStandardItemModel>
@@ -108,6 +109,26 @@ void MainWindow::setupConnection()
         ui->stwMain->setCurrentWidget(ui->pageAbout);
     });
 
+    connect(fileBrowser, &FileBrowser::onFileChanged, this, [this](QString file) {
+		QFileInfo f(file);
+
+        ui->lblNoteFilename->setText(ui->lblNoteFilename->text().split(":")[0] + ": " + f.baseName().left(10) + " ..." + f.fileName().right(10));
+        ui->lblNoteFilename->setToolTip(f.baseName());
+    });
+
+    connect(ui->btnOpenNoteDir, &QPushButton::clicked, this, [this]() {
+		QString rootPath = QFileDialog::getExistingDirectory(this, "Select Note Directory");
+		if (rootPath.isEmpty())
+		{
+			return;
+		}
+        QFileInfo f(rootPath);
+        QString dirPath = f.absolutePath();
+
+        ui->edtNoteDir->setText(dirPath);
+        fileBrowser->setRootPath(rootPath);
+    });
+
     connect(ui->btnNoteEdit, &QPushButton::clicked, this, [this]() {
         ui->stwNote->setCurrentWidget(ui->pageNoteEdit);
         fileBrowser->setDisplayMode(false);
@@ -129,6 +150,8 @@ void MainWindow::setupConnection()
     connect(ui->btnSaveSetting, &QPushButton::clicked, this, [this]() {
         config.save();
     });
+
+
 }
 
 void MainWindow::init()
@@ -245,7 +268,6 @@ void MainWindow::initUI()
 	btngLeft->addButton(ui->btnAbout);
 
 	btngNote->addButton(ui->btnNoteEdit);
-	btngNote->addButton(ui->btnNoteSplit);
 	btngNote->addButton(ui->btnNotePreview);
 
 	// 设置按钮组为互斥模式
@@ -258,9 +280,14 @@ void MainWindow::initUI()
 	modelDownloadList->setHorizontalHeaderLabels({ "选择", "标题", "分辨率", "音频", "字幕" });
 	ui->tblDownloadList->setModel(modelDownloadList);
 
+    // 设置
+    ui->tabSetting->setTabText(0, tr("下载设置"));
+
     // markdown edit
     ui->tedtNotePreview->setReadOnly(true);
     ui->stwNote->setCurrentWidget(ui->pageNoteEdit);
+
+    ui->edtNoteDir->setText(config.getValue("download.defaultPath").toString());
 
 	// 文件浏览器
 	ui->tvwNoteFile->setHeaderHidden(true);         // 隐藏表头，像 IDE 文件树一样

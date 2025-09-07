@@ -16,6 +16,11 @@ QWidget *ComboBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     return editor;
 }
 
+void ComboBoxDelegate::setItems(QStringList items)
+{
+
+}
+
 void ComboBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     QComboBox* combo = qobject_cast<QComboBox*>(editor);

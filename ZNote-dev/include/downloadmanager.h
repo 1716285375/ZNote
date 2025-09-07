@@ -5,7 +5,6 @@
 #include "task.h"
 #include "urlparser.h"
 
-
 #include <QObject>
 #include <QVector>
 #include <QMutex>
@@ -25,6 +24,8 @@ public:
 
     void addTask(const DownloadTask task);
 
+    void addTasks(const QList<DownloadTask> tasks);
+
     void start();
 
     void pause();
@@ -40,6 +41,7 @@ private slots:
     void onTaskFinished(const DownloadTask &task);
 
 private:
+
     TaskQueue *queue;
     HistoryManager *history;
     QMutex mutex;

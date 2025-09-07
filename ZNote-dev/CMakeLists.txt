@@ -61,6 +61,11 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/filebrowser.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/core/fileresolve.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/fileresolve.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/videoresolve.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/videoresolve.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/resolvethreadpool.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/resolvethreadpool.cpp
 )
 
 

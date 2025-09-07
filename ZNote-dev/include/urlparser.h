@@ -4,22 +4,8 @@
 #include <QProcess>
 #include <QByteArray>
 #include <QList>
-enum class UrlType
-{
-    Lists = 0,
-    Single
-};
 
-struct ParsedEntry
-{
-    QString id;
-    QString url;
-    QString wepagebUrlBasename;
-    QString playlistTitle;
-    UrlType type;
-    int index;
-    int playlistCount;
-};
+#include "task.h"
 
 class UrlParser : public QObject
 {
