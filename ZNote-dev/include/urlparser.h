@@ -22,6 +22,7 @@ signals:
     void errorOccurred(const QString &error);
 
 private:
+    void parseOutput(const QByteArray& output);
     QProcess *process;
     QString currentUrl;
     QByteArray buffer;

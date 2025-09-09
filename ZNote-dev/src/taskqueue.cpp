@@ -2,10 +2,10 @@
 
 #include "videodownloader.h"
 
-TaskQueue::TaskQueue(QObject *parent, int max)
+TaskQueue::TaskQueue(int max, QObject *parent)
     : QObject(parent), maxConcurrent(max)
 {
-
+    qDebug() << "Max concurrent threads set to:" << maxConcurrent;
 }
 
 void TaskQueue::enqueue(const DownloadTask &task)

@@ -22,18 +22,9 @@ public:
     void setEditorData(QWidget* editor, const QModelIndex &index) const override;
 
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex &index) const override;
-};
-// 字幕多选 CheckBox Delegate
-class SubtitlesDelegate : public QStyledItemDelegate
-{
-    Q_OBJECT
-public:
-    SubtitlesDelegate(QObject *parent=nullptr);
 
-    void paint(QPainter* painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
-    bool editorEvent(QEvent *event, QAbstractItemModel *model,
-                     const QStyleOptionViewItem &option, const QModelIndex &index) override;
+private:
+    QStringList items;
 };
 
 

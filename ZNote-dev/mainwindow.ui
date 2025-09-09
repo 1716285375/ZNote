@@ -198,15 +198,18 @@ QPushButton#pushButton_5:pressed {
 
 
 /* ❌ 危险按钮 */
-QPushButton#btnClearLog {
+QPushButton#btnClearLog,
+QPushButton#btnClearHistory {
     background-color: #fef2f2;
     color: #b91c1c;
     border: 1px solid #fca5a5;
 }
-QPushButton#btnClearLog:hover {
+QPushButton#btnClearLog:hover,
+QPushButton#btnClearHistory:hover {
     background-color: #fee2e2;
 }
-QPushButton#btnClearLog:pressed {
+QPushButton#btnClearLog:pressed,
+QPushButton#btnClearHistory:pressed {
     background-color: #fecaca;
 }
 
@@ -1038,7 +1041,11 @@ QCheckBox::indicator:checked:disabled {
               <number>16</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="edtUrl"/>
+              <widget class="QLineEdit" name="edtUrl">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <spacer name="horizontalSpacer">
@@ -1315,19 +1322,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="chkCancelAll">
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string>取消全选</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QPushButton" name="btnDownload">
                 <property name="text">
                  <string>开始下载</string>
@@ -1357,7 +1351,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
-            <widget class="QTableView" name="tblDownloadList"/>
+            <widget class="QTableView" name="tblDownloadList">
+             <property name="font">
+              <font>
+               <family>-apple-system</family>
+              </font>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed|QAbstractItemView::EditTrigger::SelectedClicked</set>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1405,7 +1408,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_5">
+               <widget class="QPushButton" name="btnClearHistory">
                 <property name="text">
                  <string>清空全部记录</string>
                 </property>
@@ -1424,7 +1427,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
-               <widget class="QTableView" name="tableView"/>
+               <widget class="QTableView" name="tblDownloadHistory"/>
               </item>
              </layout>
             </widget>

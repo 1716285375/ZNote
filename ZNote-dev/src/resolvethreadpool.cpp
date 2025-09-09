@@ -1,6 +1,5 @@
 #include "resolvethreadpool.h"
 #include "videoresolve.h"
-
 #include "misc.h"
 
 #include <QThread>
@@ -44,8 +43,8 @@ void ResolveThreadPool::startNextTask()
 		ParsedEntry* entryPtr = taskQueue_.dequeue();
 		ResolveTask* resolveTask = new ResolveTask(entryPtr);
 
-		qDebug() << "startNextTask: ";
-		znote::utils::printParsedEntry(*entryPtr);
+		//qDebug() << "startNextTask: ";
+		//znote::utils::printParsedEntry(*entryPtr);
 
 		// 创建一个新的线程来处理该任务
 		QThread* thread = new QThread;
@@ -71,9 +70,9 @@ void ResolveThreadPool::startNextTask()
 
 
 		// 启动线程
-		qDebug() << "Starting thread";
+		//qDebug() << "Starting thread";
 		thread->start(); // 启动线程
-		qDebug() << "Thread started"; // 确保线程启动
+		//qDebug() << "Thread started"; // 确保线程启动
 
 	}
 }

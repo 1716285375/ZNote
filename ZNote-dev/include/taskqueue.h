@@ -12,7 +12,7 @@ class TaskQueue : public QObject
 {
     Q_OBJECT
 public:
-    explicit TaskQueue(QObject *parent = nullptr, int max = 2);
+    explicit TaskQueue(int max = 2, QObject *parent = nullptr);
 
     void enqueue(const DownloadTask &task);
 
@@ -21,6 +21,8 @@ public:
     void pauseQueue();
 
     bool isPaused() const;
+
+    int getTaskSize() const { return pending.size(); }
 
 signals:
     void logMessage(const QString &msg);

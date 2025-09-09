@@ -12,7 +12,8 @@ public:
     explicit JSONHistoryBackend(const QString &filePath);
 
     void add(const DownloadHistoryItem &item) override;
-    QVector<DownloadHistoryItem> load() override;
+    void remove(const QString& id) override;
+    QList<DownloadHistoryItem> load() override;
     void save(const QVector<DownloadHistoryItem> &items) override;
 
 private:

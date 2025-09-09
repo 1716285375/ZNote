@@ -5,7 +5,7 @@
 #include "interface/ihistorybackend.h"
 
 #include <QObject>
-#include <QVector>
+#include <QList>
 
 enum class HistoryStorageType
 {
@@ -21,7 +21,8 @@ public:
     explicit HistoryManager(HistoryStorageType type, const QString &path, QObject *parent = nullptr);
 
     void addHistory(const DownloadHistoryItem &item);
-    QVector<DownloadHistoryItem> getHistory();
+    void removeHistory(const DownloadHistoryItem &item);
+    QList<DownloadHistoryItem> getHistory();
 
 private:
     IHistoryBackend *backend;

@@ -23,6 +23,11 @@ void HistoryManager::addHistory(const DownloadHistoryItem &item)
     backend->add(item);
 }
 
+void HistoryManager::removeHistory(const DownloadHistoryItem& item)
+{
+    backend->remove(item.vid);
+}
+
 QVector<DownloadHistoryItem> HistoryManager::getHistory()
 {
     return backend->load();

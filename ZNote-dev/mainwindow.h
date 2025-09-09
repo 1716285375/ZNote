@@ -1,12 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QButtonGroup>
-
 #include "videodownloader.h"
 #include "taskqueue.h"
 #include "core/filebrowser.h"
+#include "component/videomodel.h"
+#include "component/historymodel.h"
+
+
+#include <QMainWindow>
+#include <QButtonGroup>
+#include <QSet>
 
 class QButtonGroup;
 class DownloadManager;
@@ -36,6 +40,18 @@ private:
 
     void initUI();
 
+    void initData();
+
+    void onTaskReady(const DownloadTask& task);
+    void onTaskFinished(const DownloadTask& task);
+
+    void selectAll();
+    void cancelAll();
+
+    void clearHistory();
+
+    void startDownload();
+
 private slots:
     // 自动connect
     void on_btnDownload_clicked();
@@ -55,12 +71,18 @@ private:
     QButtonGroup *btngLeft;
     QButtonGroup *btngNote;
 
+    /** 统一管理下载列表的CheckBox */
+    QButtonGroup *chkDownload;
+
     /** 上一次合法文件保存目录 */
     ConfigManager &config;
 
     /** 文件浏览器 */
 	FileBrowser* fileBrowser;
 
+    /** 下载列表模型 */
+    VideoModel *model_;
+    HistoryModel * historyModel_;
 
 };
 #endif // MAINWINDOW_H

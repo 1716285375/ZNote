@@ -26,16 +26,21 @@ namespace znote::utils {
     QStringList buildDownloadCommand(const QString& url);
     QStringList buildExtractPlaylistCommand(const QString& url);
 
+    QStringList buildDownloadCommand(const DownloadTask& task);
+
 
     // Debug
 
     void printCommand(const QStringList& args);
 
     void printParsedEntry(const ParsedEntry& entry);
+    void printParsedEntries(const QList<ParsedEntry> &entries);
 
     void printVideoFormat(const VideoFormat& format);
     void printVideoEntry(const VideoEntry& entry);
     void printDownloadTask(const DownloadTask& task);
+
+    void printDownloadHistoryItem(const DownloadHistoryItem& item);
 }
 
 

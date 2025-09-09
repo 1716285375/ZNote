@@ -3,6 +3,8 @@
 #include "ui_mainwindow.h"
 #include "misc.h"
 #include "configmanager.h"
+#include "component/checkboxdelegate.h"
+#include "historymanager.h"
 
 #include <QOverload>
 #include <QStringList>
@@ -21,12 +23,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , btngLeft(new QButtonGroup(this))
     , btngNote(new QButtonGroup(this))
+    , chkDownload(new QButtonGroup(this))
     , manager(new DownloadManager(this))
 	, config(ConfigManager::instance())
     , fileBrowser(new FileBrowser(this))
+    , model_(new VideoModel(this))
+    , historyModel_(new HistoryModel(this))
 {
     ui->setupUi(this);
+
     this->init();
+
     this->setWindowTitle(QString("ZNote"));
 
     this->setupConnection();
@@ -41,7 +48,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupConnection()
 {
-    connect(ui->btnDownload, &QPushButton::clicked, manager, &DownloadManager::start);
+    connect(ui->btnDownload, &QPushButton::clicked, this, &MainWindow::startDownload);
     connect(ui->btnPause, &QPushButton::clicked, manager, &DownloadManager::pause);
 
     connect(manager, &DownloadManager::logMessage, this, [this](const QString &msg){
@@ -54,6 +61,23 @@ void MainWindow::setupConnection()
         ui->lblProgress->setText(p);
         ui->pbarDownload->setValue(int(100 * percent));
     });
+
+    connect(manager, &DownloadManager::taskReady, this, &MainWindow::onTaskReady);
+    connect(manager, &DownloadManager::taskFinished, this, &MainWindow::onTaskFinished);
+
+
+    connect(ui->chkSelectAll, &QCheckBox::clicked, this, [this](bool checked) {
+        //qDebug() << checked;
+
+        if (checked) {
+              this->selectAll();
+        }
+        else
+        {
+            this->cancelAll();
+        }
+
+	});
 
     connect(ui->edtSaveDir, &QLineEdit::textChanged, this, [this](const QString &text) {
         // 定义非法字符 (Windows 文件/目录名限制)
@@ -70,6 +94,8 @@ void MainWindow::setupConnection()
         }
 
     });
+
+    connect(ui->btnClearHistory, &QPushButton::clicked, this, &MainWindow::clearHistory);
 
     connect(ui->btnBrowseDir, &QPushButton::clicked, this, [this]() {
         QString saveDir = QFileDialog::getExistingDirectory(this, "Select Save Directory");
@@ -159,6 +185,8 @@ void MainWindow::init()
 	this->initConfig();
 
 	this->initUI();
+
+    this->initData();
 }
 
 void MainWindow::on_btnDownload_clicked()
@@ -272,13 +300,22 @@ void MainWindow::initUI()
 
 	// 设置按钮组为互斥模式
 	btngLeft->setExclusive(true);
+
 	ui->edtSaveDir->setText(config.getValue("download.defaultPath").toString());
 
 	// 下载列表
-	QStandardItemModel* modelDownloadList = new QStandardItemModel(this);
-	modelDownloadList->setColumnCount(5);
-	modelDownloadList->setHorizontalHeaderLabels({ "选择", "标题", "分辨率", "音频", "字幕" });
-	ui->tblDownloadList->setModel(modelDownloadList);
+
+	ui->tblDownloadList->setModel(model_);
+
+	CheckBoxDelegate* chkDelegate = new CheckBoxDelegate(this);
+
+	ui->tblDownloadList->setItemDelegateForColumn(6, chkDelegate);
+	ui->tblDownloadList->resizeColumnsToContents();
+
+
+    // 历史下载记录
+    ui->tblDownloadHistory->setModel(historyModel_);
+    ui->tblDownloadHistory->resizeColumnsToContents();
 
     // 设置
     ui->tabSetting->setTabText(0, tr("下载设置"));
@@ -300,5 +337,113 @@ void MainWindow::initUI()
     fileBrowser->setNameFilters({ "*.txt", "*.md" }); // 可选 
     fileBrowser->setTextEdit(ui->tedtNote);
     fileBrowser->setTextBrowser(ui->tedtNotePreview);
+
+}
+
+void MainWindow::initData()
+{
+    QList<DownloadHistoryItem> historyItems = manager->getHistory();
+    if (historyItems.isEmpty()) qDebug() << "null";
+    for (const auto& item : historyItems) {
+        //znote::utils::printDownloadHistoryItem(item);
+        historyModel_->addhistory(item);
+    }
+}
+
+void MainWindow::onTaskReady(const DownloadTask& task)
+{
+    //znote::utils::printDownloadTask(task);
+    model_->addTask(task);
+}
+
+void MainWindow::onTaskFinished(const DownloadTask& task)
+{
+	DownloadHistoryItem item;
+	item.vid = task.id;
+	item.title = task.video.title;
+	item.index = task.index;
+	item.playlistCount = task.playlistCount;
+	item.savePath = task.savePath;
+	item.type = task.type;
+	item.startTime = task.startTime;
+	item.endTime = task.endTime;
+	item.status = DownloadStatus::Success;
+
+	this->manager->addHistory(item);  // 保存到历史记录
+
+    historyModel_->addhistory(item);
+}
+
+void MainWindow::selectAll()
+{
+	// 获取模型
+	VideoModel* model = qobject_cast<VideoModel*>(ui->tblDownloadList->model());
+
+	// 遍历模型中的所有行，设置复选框为勾选状态
+	for (int row = 0; row < model->rowCount(); ++row) {
+		QModelIndex index = model->index(row, 6);  // 获取第6列（复选框列）的索引
+		model->setData(index, Qt::Checked, Qt::CheckStateRole);  // 设置复选框为勾选状态
+	}
+}
+
+void MainWindow::cancelAll()
+{
+	// 获取模型
+	VideoModel* model = qobject_cast<VideoModel*>(ui->tblDownloadList->model());
+
+	// 遍历模型中的所有行，设置复选框为未勾选状态
+	for (int row = 0; row < model->rowCount(); ++row) {
+		QModelIndex index = model->index(row, 6);  // 获取第6列（复选框列）的索引
+		model->setData(index, Qt::Unchecked, Qt::CheckStateRole);  // 设置复选框为未勾选状态
+	}
+}
+
+void MainWindow::clearHistory()
+{
+    QList<DownloadHistoryItem> historyItems;
+    QList<int> selectedRows;  // 存储选中的行号
+    HistoryModel* model = qobject_cast<HistoryModel*>(ui->tblDownloadHistory->model());
+
+    for (int row = 0; row < model->rowCount(); ++row) {
+        
+        DownloadHistoryItem item = model->getHistortyItems().at(row);
+        historyItems.append(item);
+        selectedRows.append(row);
+    }
+    historyModel_->removehistorys(selectedRows);
+    this->manager->removeHistory(historyItems);
+}
+
+void MainWindow::startDownload()
+{
+    QList<DownloadTask> downloadTasks;
+    QList<int> selectedRows;  // 存储选中的行号
+	VideoModel* model = qobject_cast<VideoModel*>(ui->tblDownloadList->model());
+
+	for (int row = 0; row < model->rowCount(); ++row) {
+		QModelIndex index = model->index(row, 6);  // 获取第6列（复选框列）的索引
+
+		// 获取勾选状态，正确的方式是直接使用 Qt::CheckState
+		Qt::CheckState checkState = static_cast<Qt::CheckState>(index.data(Qt::CheckStateRole).toInt());
+
+
+		if (checkState == Qt::Checked) {
+			// 如果该行的复选框被勾选
+			qDebug() << "Row " << row << " is selected.";
+
+			DownloadTask* task = model->getTasks().at(row);  // 获取模型中对应行的 DownloadTask
+			downloadTasks.append(*task);
+
+			// 将勾选行加入到删除列表
+			selectedRows.append(row);
+           }
+	}
+
+	// 批量删除勾选的行
+	model->removeTasks(selectedRows);
+
+    this->manager->addTasks(downloadTasks);
+    this->manager->start();
+    ui->chkSelectAll->setChecked(false);
 }
 

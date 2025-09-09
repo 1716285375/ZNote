@@ -1,10 +1,13 @@
 #include "videoresolve.h"
 #include "misc.h"
+#include "configmanager.h"
 
 #include <QProcess>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QDateTime>
+
 #include <QDebug>
 
 
@@ -17,7 +20,7 @@ ResolveTask::ResolveTask(ParsedEntry *entry, QObject* prarent)
 
 void ResolveTask::start()
 {
-	qDebug() << "Start method invoked";  // 确保这一行被执行
+	//qDebug() << "Start method invoked";  // 确保这一行被执行
 	resolve(*entry_);
 }
 
@@ -62,16 +65,19 @@ void ResolveTask::resolve(const ParsedEntry &entry)
 
 		// 创建 DownloadTask
 		DownloadTask task;
-		task.url = videoUrl;
-		task.playlistTitle = entry.playlistTitle;
-		//task.savePath = entry.
+		task.id = videoId;
+		task.savePath =  ConfigManager::instance().getValue("download.defaultPath").toString();
+
+		task.index = entry.index;
 		task.type = entry.type;
 		task.playlistCount = entry.playlistCount;
+		task.resolveTime = QDateTime::currentDateTime();
 
 		// 填充 VideoEntry
 		VideoEntry videoEntry;
 		videoEntry.title = videoTitle;
 		videoEntry.url = videoUrl;
+		videoEntry.playlistTitle = entry.playlistTitle;
 
 		// 解析格式列表
 		QJsonArray formats = root.value("formats").toArray();
@@ -102,8 +108,8 @@ void ResolveTask::resolve(const ParsedEntry &entry)
 		emit entryResolved(task);
 		
 		// 在此处可以进一步处理获取到的数据，如传递回 UI 层
-		qDebug() << "Video Title:" << videoTitle;
-		qDebug() << "Video URL:" << videoUrl;
+		//qDebug() << "Video Title:" << videoTitle;
+		//qDebug() << "Video URL:" << videoUrl;
 	});
 
 	connect(process, &QProcess::finished, process, &QProcess::deleteLater);  // 进程结束后清理

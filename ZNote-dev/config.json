@@ -1,6 +1,6 @@
 {
   "download": {
-    "defaultPath": "C:/A/Web/ZNote/service/datas/markdown",
+    "defaultPath": "F:\\tool\\yt-dlp\\BilibiliDownloads\\test",
     "threadCount": 4,
     "filePrefix": "ZN_",
     "fileSuffix": "_video",

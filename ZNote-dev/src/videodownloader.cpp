@@ -1,10 +1,11 @@
 #include "VideoDownloader.h"
+#include "misc.h"
+
+
 #include <QStringList>
 #include <QOverload>
 #include <QStandardPaths>
-#include <QFileInfo>
-#include <QStringList>
-#include <QDir>
+
 #include <QDateTime>
 #include <QDebug>
 
@@ -32,19 +33,15 @@ void VideoDownloader::start(const DownloadTask &task)
         process = new QProcess(this);
     }
 
-    QString targetFile = QDir::toNativeSeparators(
-        QString("%1/%2/%3 - %(title)s.%(ext)s")
-            .arg(task.savePath, task.playlistTitle, QString::number(task.index))
-        );
 
+    QStringList args = znote::utils::buildDownloadCommand(task);
 
-    QStringList args;
-    args << "-o" << QDir::toNativeSeparators(targetFile);
-    args << task.url;
+    znote::utils::printCommand(args);
 
     process->start(program, args);
 
     currentTask.startTime = QDateTime::currentDateTime();
+
     emit taskStarted(currentTask);
 }
 

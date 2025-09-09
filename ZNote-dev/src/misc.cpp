@@ -1,10 +1,13 @@
 #include "misc.h"
 #include "task.h"
+#include "configmanager.h"
 
 #include <QRandomGenerator>
 #include <QString>
 #include <QChar>
 #include <QRegularExpression>
+#include <QFileInfo>
+#include <QDir>
 
 #include <QDebug>
 
@@ -80,16 +83,50 @@ namespace znote::utils {
 
     QStringList buildDownloadCommand(const QString& url)
     {
+
         return QStringList();
     }
+
+	QStringList buildDownloadCommand(const DownloadTask& task)
+	{
+		QString targetFile = "";
+		if (task.type == UrlType::Single) {
+			targetFile = QDir::toNativeSeparators(
+				QString("%1/%2/%3.%4")
+				.arg(task.savePath,
+				task.video.playlistTitle,
+				task.video.title,
+				task.video.ext)
+			);
+		}
+		else if (task.type == UrlType::Lists)
+		{
+			targetFile = QDir::toNativeSeparators(
+				QString("%1/%2/%3-%4.%5")
+				.arg(task.savePath,
+				task.video.playlistTitle,
+				QString::number(task.index),
+				task.video.title,
+				task.video.ext)
+			);
+		}
+
+		QStringList args;
+		args << "-o" << QDir::toNativeSeparators(targetFile) << task.video.url;
+
+		return args;
+	}
 
 	QStringList buildExtractPlaylistCommand(const QString& url)
 	{
 		QStringList args;
-		args << "--flat-playlist" << "-j" << url;
+		args << "--flat-playlist" << "-J" << url;
 
         return args;
 	}
+
+
+	
 
 	void printCommand(const QStringList& args)
 	{
@@ -126,7 +163,6 @@ namespace znote::utils {
 
 		qDebug() << "ID:" << entry.id;
 		qDebug() << "URL:" << entry.url;
-		qDebug() << "Webpage URL Basename:" << entry.wepagebUrlBasename;
 		qDebug() << "Playlist Title:" << entry.playlistTitle;
 		qDebug() << "Type:" << entry.type;
 		qDebug() << "Index:" << entry.index;
@@ -154,6 +190,7 @@ namespace znote::utils {
 		qDebug() << "VideoEntry:";
 		qDebug() << "  title:" << entry.title;
 		qDebug() << "  url:" << entry.url;
+		qDebug() << "  playlistTitle:" << entry.playlistTitle;
 
 		// 打印 videoFormats
 		qDebug() << "  videoFormats:";
@@ -172,15 +209,25 @@ namespace znote::utils {
 	{
 		qDebug() << "------------ printDownloadTask -------------";
 		qDebug() << "DownloadTask:";
-		qDebug() << "  url:" << task.url;
+		qDebug() << "  id:" << task.id;
 		qDebug() << "  index:" << task.index;
-		qDebug() << "  savePath:" << task.savePath;
-		qDebug() << "  playlistTitle:" << task.playlistTitle;
-		qDebug() << "  resolution:" << task.resolution;
-		qDebug() << "  audioFormat:" << task.audioFormat;
+		qDebug() << "  playlistCount:" << task.playlistCount;
+		qDebug() << "  resolveTime:" << task.resolveTime.toString();
 		qDebug() << "  startTime:" << task.startTime.toString();
 		qDebug() << "  endTime:" << task.endTime.toString();
-		qDebug() << "  subtitles:" << task.subtitles;
+
+		if (task.type == UrlType::Single)
+		{
+			qDebug() << "  type: " << task.type;
+		}
+		else if (task.type == UrlType::Lists)
+		{
+			qDebug() << "  type: " << task.type;
+		}
+
+		qDebug() << "  savePath:" << task.savePath;
+		qDebug() << "  startTime:" << task.startTime.toString();
+		qDebug() << "  endTime:" << task.endTime.toString();
 
 		// 打印 video 信息
 		printVideoEntry(task.video);
@@ -188,6 +235,63 @@ namespace znote::utils {
 		qDebug() << "------------ printDownloadTask -------------";
 	}
 
+	void printParsedEntries(const QList<ParsedEntry>& entries)
+	{
+		for (auto entry : entries)
+		{
+			printParsedEntry(entry);
+		}
+	}
+
+
+	void printDownloadHistoryItem(const DownloadHistoryItem& item)
+	{
+		qDebug() << "------------ DownloadHistoryItem -------------";
+
+		qDebug() << "VID:" << item.vid;
+		qDebug() << "Title:" << item.title;
+		qDebug() << "Index:" << item.index;
+		qDebug() << "Playlist Count:" << item.playlistCount;
+
+		// 打印类型（根据 `UrlType` 枚举值来判断）
+		QString typeStr;
+		switch (item.type) {
+		case UrlType::Single:
+			typeStr = "Single";
+			break;
+		case UrlType::Lists:
+			typeStr = "PlayList";
+			break;
+		default:
+			typeStr = "Unknown";
+			break;
+		}
+		qDebug() << "Type:" << typeStr;
+
+		qDebug() << "Save Path:" << item.savePath;
+		qDebug() << "Start Time:" << item.startTime.toString(Qt::ISODate);
+		qDebug() << "End Time:" << item.endTime.toString(Qt::ISODate);
+
+		// 打印状态（根据 `DownloadStatus` 枚举值来判断）
+		QString statusStr;
+		switch (item.status) {
+		case DownloadStatus::Success:
+			statusStr = "Success";
+			break;
+		case DownloadStatus::Failed:
+			statusStr = "Failed";
+			break;
+		case DownloadStatus::Canceled:
+			statusStr = "Canceled";
+			break;
+		default:
+			statusStr = "Unknown";
+			break;
+		}
+		qDebug() << "Status:" << statusStr;
+
+		qDebug() << "------------ DownloadHistoryItem ---------";
+	}
 
 
 }

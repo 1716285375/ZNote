@@ -66,6 +66,18 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/videoresolve.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/resolvethreadpool.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resolvethreadpool.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/component/videomodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/component/videomodel.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/component/checkboxdelegate.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/component/checkboxdelegate.cpp
+
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/component/historymodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/component/historymodel.cpp
+
+
 )
 
 

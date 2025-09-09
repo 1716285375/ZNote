@@ -10,12 +10,15 @@
 
 DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
-    ,queue(new TaskQueue(this, 2)) // 默认 2 并发
-    ,history(new HistoryManager(HistoryStorageType::SQLite, "history.db", this))
+    , history(new HistoryManager(HistoryStorageType::SQLite, "history.db", this))
 {
+    //queue = new TaskQueue(4, this);
+    queue = new TaskQueue(ConfigManager::instance().getValue("download.threadCount", 4).toInt(), this);
     connect(queue, &TaskQueue::logMessage, this, &DownloadManager::logMessage);
     connect(queue, &TaskQueue::allFinished, this, &DownloadManager::allFinished);
     connect(queue, &TaskQueue::taskFinished, this, &DownloadManager::onTaskFinished);
+
+    
 }
 
 void DownloadManager::parseUrl(const QString &url, const QString &savePath)
@@ -37,25 +40,24 @@ void DownloadManager::parseUrl(const QString &url, const QString &savePath)
 		// 更新任务进度
 		emit taskProgress(doneTasks, 1.0f * doneTasks / totalTasks);
 
-		// 删除 parser 对象
-		parser->deleteLater();
-
         //qDebug() << "download.threadCount: " << ConfigManager::instance().getValue("download.threadCount").toInt();
 
         ResolveThreadPool* resolvePool = new ResolveThreadPool(ConfigManager::instance().getValue("download.threadCount").toInt(), this);
-        connect(resolvePool, &ResolveThreadPool::taskFinished, [](const DownloadTask &task) {
-            znote::utils::printDownloadTask(task);
+        connect(resolvePool, &ResolveThreadPool::taskFinished, [this](const DownloadTask &task) {
+
+            emit taskReady(task);
+            
         });
 
-		connect(resolvePool, &ResolveThreadPool::taskError, [](const QString &err) {
-
+		connect(resolvePool, &ResolveThreadPool::taskError, [this](const QString &err) {
+            qDebug() << "task resolve error: " << err;
+            emit taskError(err);
 		});
 
         for (const ParsedEntry &entry : entries) {
-            resolvePool->addResolveTask(entry);
-            //qDebug() << "resolvePool->addResolveTask(entry) ";
-            //znote::utils::printParsedEntry(entry);
-
+			resolvePool->addResolveTask(entry);
+			//qDebug() << "resolvePool->addResolveTask(entry) ";
+			//znote::utils::printParsedEntry(entry);
         }
     });
 
@@ -73,18 +75,20 @@ void DownloadManager::parseUrl(const QString &url, const QString &savePath)
 
 }
 
-void DownloadManager::addTask(const DownloadTask task) {
+void DownloadManager::addTask(const DownloadTask& task) {
     queue->enqueue(task);
 }
 
-void DownloadManager::addTasks(const QList<DownloadTask> tasks)
+void DownloadManager::addTasks(const QList<DownloadTask>& tasks)
 {
     for (const auto& t : tasks) {
+        znote::utils::printDownloadTask(t);
         addTask(t);
     }
 }
 
 void DownloadManager::start() {
+
     queue->startQueue();
 }
 
@@ -93,16 +97,39 @@ void DownloadManager::pause() {
 }
 
 
-void DownloadManager::onTaskFinished(const DownloadTask &task) {
-    DownloadHistoryItem item;
-    item.url = task.url;
-    item.filePath = task.savePath;
-    item.startTime = task.startTime;
-    item.endTime = task.endTime;
+QList<DownloadHistoryItem> DownloadManager::getHistory() const
+{
+	return history->getHistory();
+}
 
-    history->addHistory(item);  // 保存到历史记录
+void DownloadManager::addHistory(const DownloadHistoryItem& task)
+{
+    history->addHistory(task);
+}
+
+bool DownloadManager::removeHistory(const QList<DownloadHistoryItem> &items)
+{
+    try {
+		for (const auto& item : items) {
+			history->removeHistory(item);
+		}
+
+		return true;
+    } catch(const std::exception& e) {
+		qWarning() << "Exception occurred:" << e.what();  // 打印异常信息
+        return false;
+    } catch (...) {
+		qWarning() << "Unknown exception occurred.";  // 捕获其他未知异常
+		return false;
+	}
+
+}
+
+void DownloadManager::onTaskFinished(const DownloadTask &task) {
+
     QMutexLocker locker(&mutex);
     doneTasks += 1;
+    emit taskFinished(task);
     emit taskProgress(doneTasks, 1.0f * doneTasks / totalTasks);
 }
 

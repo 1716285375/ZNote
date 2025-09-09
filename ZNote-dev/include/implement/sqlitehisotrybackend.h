@@ -10,7 +10,8 @@ public:
     explicit SQLiteHistoryBackend(const QString &dbPath);
 
     void add(const DownloadHistoryItem &item) override;
-    QVector<DownloadHistoryItem> load() override;
+    QList<DownloadHistoryItem> load() override;
+    void remove(const QString& vid) override;
     void save(const QVector<DownloadHistoryItem> &items) override;
 
 private:
