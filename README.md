@@ -1,6 +1,6 @@
 # 🤖 ZNote - B站视频下载工具
 
-ZNote 是一款可以下载B站(哔哩哔哩)视频的下载工具，基于[yt-dlp](https://github.com/yt-dlp/yt-dlp)开发旨在提供高效、便捷的视频下载体验。它支持多线程解析与下载，自动记录下载历史，并通过JSON配置文件和SQLite数据库实现个性化设置与数据管理。
+ZNote 是一款可以下载B站(哔哩哔哩)视频的下载工具，基于 [yt-dlp](https://github.com/yt-dlp/yt-dlp) 开发旨在提供高效、便捷的视频下载体验。它支持多线程解析与下载，自动记录下载历史，并通过JSON配置文件和SQLite数据库实现个性化设置与数据管理。
 
 
 ## 🏛 核心功能
@@ -43,5 +43,7 @@ ZNote 是一款可以下载B站(哔哩哔哩)视频的下载工具，基于[yt-d
 
 ZNote 致力于为B站用户提供稳定、高效的视频下载解决方案，如有问题或建议，欢迎提交反馈！
 ## 参考
-* [https://github.com/yt-dlp/yt-dlp](yt-dlp)
-* [https://doc.qt.io/qt-6/reference-overview.html](Qt6.9.1)
+* [yt-dlp](https://github.com/yt-dlp/yt-dlp) 
+* [Qt6.9.1](https://doc.qt.io/qt-6/reference-overview.html)
+* [cmark](https://github.com/commonmark/cmark)
+* [qmarkdowntextedit](https://github.com/pbek/qmarkdowntextedit)
