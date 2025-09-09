@@ -18,7 +18,7 @@ ZNote 是一款可以下载B站(哔哩哔哩)视频的下载工具，基于 [yt-
 
 
 ## 📝 快速上手
-
+点击这里[下载](https://github.com/1716285375/ZNote/releases/tag/Pre-ZNote)ZNote
 1. **配置文件**：在工具目录下的 `config.json` 中设置：
    - 下载路径（`download.defaultPath`）
    - 最大线程数（`download.threadCount`）等
