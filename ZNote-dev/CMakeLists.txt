@@ -142,7 +142,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE cmark::cmark)
 # ------------------------
 if(MSVC)
     if(CMAKE_BUILD_TYPE STREQUAL "Release")
-        target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
+        target_compile_options(${PROJECT_NAME} PRIVATE /W4)
     else()
         target_compile_options(${PROJECT_NAME} PRIVATE /W4)
     endif()
