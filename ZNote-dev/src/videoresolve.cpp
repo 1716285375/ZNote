@@ -2,7 +2,6 @@
 #include "misc.h"
 #include "configmanager.h"
 
-#include <QRegularExpression>
 #include <QProcess>
 #include <QJsonDocument>
 #include <QJsonObject>

@@ -361,7 +361,6 @@ void MainWindow::onTaskFinished(const DownloadTask& task)
 	DownloadHistoryItem item;
 	item.vid = task.id;
 	item.title = task.video.title;
-    qDebug() << "history title : " << item.title;
 	item.index = task.index;
 	item.playlistCount = task.playlistCount;
 	item.savePath = task.savePath;
