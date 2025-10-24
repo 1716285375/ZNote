@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QCoreApplication>
+#include <QWebEngineSettings>
 #include <QIcon>
 
 #ifdef _WIN32
@@ -10,11 +12,9 @@
 int main(int argc, char *argv[])
 {
 #ifdef _WIN32
-    #ifdef _DEBUG
-	    AllocConsole(); // 打开控制台
-	    freopen("CONOUT$", "w", stdout);
-	    freopen("CONOUT$", "w", stderr);
-    #endif
+	AllocConsole(); // 打开控制台
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
 #endif
 
     QApplication a(argc, argv);

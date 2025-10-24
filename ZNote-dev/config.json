@@ -1,6 +1,6 @@
 {
   "download": {
-    "defaultPath": "F:\\tool\\yt-dlp\\BilibiliDownloads\\ZNote",
+    "defaultPath": "F:\\tool\\yt-dlp\\BilibiliDownloads\\test",
     "threadCount": 4,
     "filePrefix": "ZN_",
     "fileSuffix": "_video",

@@ -79,12 +79,6 @@ void MainWindow::setupConnection()
 
 	});
 
-    connect(ui->btnClearLog, &QPushButton::clicked, this, [this]() {
-        ui->tbwLog->clear();
-        QString line = QDateTime::currentDateTime().toString("[hh:mm:ss] ") + "已就绪，等待下载...";
-        ui->tbwLog->append(line);
-    });
-
     connect(ui->edtSaveDir, &QLineEdit::textChanged, this, [this](const QString &text) {
         // 定义非法字符 (Windows 文件/目录名限制)
         if (znote::utils::isValidPath(text))
@@ -309,11 +303,8 @@ void MainWindow::initUI()
 
 	ui->edtSaveDir->setText(config.getValue("download.defaultPath").toString());
 
-    // log
-	QString line = QDateTime::currentDateTime().toString("[hh:mm:ss] ") + "已就绪，等待下载...";
-	ui->tbwLog->append(line);
-
 	// 下载列表
+
 	ui->tblDownloadList->setModel(model_);
 
 	CheckBoxDelegate* chkDelegate = new CheckBoxDelegate(this);
