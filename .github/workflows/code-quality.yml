@@ -18,7 +18,7 @@ jobs:
     - name: Check for TODO/FIXME
       run: |
         echo "Checking for TODO/FIXME comments..."
-        if grep -r "TODO\|FIXME\|XXX\|HACK" ZNote-dev/src ZNote-dev/include --exclude-dir=build 2>/dev/null; then
+        if grep -r "TODO\|FIXME\|XXX\|HACK" ZNote/src ZNote/include --exclude-dir=build 2>/dev/null; then
           echo "::warning::Found TODO/FIXME comments. Consider addressing them."
         else
           echo "No TODO/FIXME comments found."
@@ -27,7 +27,7 @@ jobs:
     - name: Check for hardcoded paths
       run: |
         echo "Checking for hardcoded paths..."
-        if grep -r "F:\\\\\|C:\\\\\|/home/\|/Users/" ZNote-dev/src ZNote-dev/include --exclude-dir=build 2>/dev/null; then
+        if grep -r "F:\\\\\|C:\\\\\|/home/\|/Users/" ZNote/src ZNote/include --exclude-dir=build 2>/dev/null; then
           echo "::error::Found hardcoded paths. Please use relative paths or configuration."
           exit 1
         else

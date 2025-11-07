@@ -35,14 +35,14 @@ jobs:
     - name: Create release archive
       run: |
         mkdir -p release
-        if [ -f dist/windows/ZNote-dev.exe ]; then
-          zip -r release/ZNote-dev-Windows.zip dist/windows/
+        if [ -f dist/windows/ZNote/ZNote.exe ]; then
+          zip -r release/ZNote-Windows.zip dist/windows/
         fi
-        if [ -f dist/linux/ZNote-dev ]; then
-          tar -czf release/ZNote-dev-Linux.tar.gz -C dist/linux ZNote-dev
+        if [ -f dist/linux/ZNote/ZNote ]; then
+          tar -czf release/ZNote-Linux.tar.gz -C dist/linux ZNote
         fi
-        if [ -d dist/macos/ZNote-dev.app ]; then
-          zip -r release/ZNote-dev-macOS.zip dist/macos/
+        if [ -d dist/macos/ZNote/ZNote.app ]; then
+          zip -r release/ZNote-macOS.zip dist/macos/
         fi
         
     - name: Upload release assets
