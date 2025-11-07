@@ -8,6 +8,7 @@ namespace utils {
 
 QList<QString> buildDownloadCommand(const DownloadTask &task, IConfigService *configService)
 {
+    Q_UNUSED(configService);
     QList<QString> command;
     
     // 输出路径

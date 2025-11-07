@@ -18,9 +18,7 @@ Application::Application(int argc, char *argv[])
     setApplicationVersion("2.0.0");
     setOrganizationName("ZNote Team");
     
-    // 设置应用程序属性
-    setAttribute(Qt::AA_EnableHighDpiScaling);
-    setAttribute(Qt::AA_UseHighDpiPixmaps);
+    // 注意：Qt 6 中高 DPI 缩放已默认启用，不再需要设置这些属性
 }
 
 Application::~Application()

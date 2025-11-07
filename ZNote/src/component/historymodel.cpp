@@ -18,6 +18,7 @@ int HistoryModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 
 int HistoryModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
+	Q_UNUSED(parent);
 	return 8;	// 8列：ID, 视频标题, 集数, 类型, 保存路径, 开始下载时间, 结束下载时间, 下载状态
 }
 
@@ -86,6 +87,7 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
 
 QModelIndex HistoryModel::index(int row, int column, const QModelIndex& parent /*= QModelIndex()*/) const
 {
+	Q_UNUSED(parent);
 	if (row < 0 || column < 0 || row >= historyItems.count())
 		return QModelIndex();
 	return createIndex(row, column);
@@ -93,6 +95,7 @@ QModelIndex HistoryModel::index(int row, int column, const QModelIndex& parent /
 
 QModelIndex HistoryModel::parent(const QModelIndex& index) const
 {
+	Q_UNUSED(index);
 	return QModelIndex();  // 没有父节点
 }
 

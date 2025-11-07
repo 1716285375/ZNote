@@ -1,9 +1,9 @@
 ﻿cmake_minimum_required(VERSION 3.24)
 
-project(ZNote-dev 
+project(ZNote 
     VERSION 1.0.0
     DESCRIPTION "A modern desktop application for downloading videos from Bilibili and other platforms"
-    HOMEPAGE_URL "https://github.com/1716285375/ZNote-dev"
+    HOMEPAGE_URL "https://github.com/1716285375/ZNote"
     LANGUAGES CXX
 )
 

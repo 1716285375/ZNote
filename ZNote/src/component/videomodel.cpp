@@ -21,6 +21,7 @@ int VideoModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 
 int VideoModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
+	Q_UNUSED(parent);
 	return 7;	// 7列：ID, 视频标题, 集数, 类型, 解析时间, 保存路径, 下载状态
 }
 
@@ -105,6 +106,7 @@ QVariant VideoModel::headerData(int section, Qt::Orientation orientation, int ro
 
 QModelIndex VideoModel::index(int row, int column, const QModelIndex& parent /*= QModelIndex()*/) const
 {
+	Q_UNUSED(parent);
 	if (row < 0 || column < 0 || row >= taskItems.count())
 		return QModelIndex();
 	return createIndex(row, column);
@@ -112,6 +114,7 @@ QModelIndex VideoModel::index(int row, int column, const QModelIndex& parent /*=
 
 QModelIndex VideoModel::parent(const QModelIndex& index) const
 {
+	Q_UNUSED(index);
 	return QModelIndex();  // 没有父节点
 }
 
