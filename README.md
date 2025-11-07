@@ -10,6 +10,26 @@ A modern, cross-platform desktop application for downloading videos from Bilibil
 
 一个现代化的跨平台桌面应用程序，用于从 Bilibili 和其他平台下载视频，基于 yt-dlp 构建。使用 Qt6 和 C++17 开发。
 
+## 🖼️ Interface Preview
+
+### Main Interface - Video Parsing
+![Main Interface](ZNote/assets/app/ZNote.png)
+
+ZNote features a clean and intuitive user interface with a left navigation sidebar containing five main functional modules. The main interface supports direct input of Bilibili video URLs for parsing, with real-time log display and progress information.
+
+### Download List
+![Download List](ZNote/assets/app/ZNote-download.png)
+
+The download list page displays all parsed video information, including video ID, title, episode count, type, parsing time, and save path. Supports batch selection and download management for convenient task control.
+
+### Settings Page
+![Settings Page](ZNote/assets/app/ZNote-setting.png)
+
+The settings page provides rich configuration options, including:
+- **Basic Download Configuration**: Default save path, download thread count
+- **File Naming Rules**: Custom file prefix/suffix
+- **Post-Download Actions**: Sound notifications, auto-open directory, etc.
+
 ## ✨ Features
 
 - 🎬 **Multi-platform Support**: Download videos from Bilibili and other platforms supported by yt-dlp
@@ -117,18 +137,20 @@ The application uses `config.json` for settings. A default configuration is crea
 
 ```
 ZNote-dev/
-├── assets/              # Resources (icons, styles, sounds)
-├── include/             # Header files
-│   ├── app/            # Application core
-│   ├── component/      # UI components
-│   ├── core/           # Core functionality
-│   ├── services/       # Service layer
-│   ├── ui/             # UI classes
-│   └── utils/           # Utility functions
-├── src/                # Source files
-├── tests/              # Test files
-├── CMakeLists.txt      # CMake configuration
-├── resources.qrc       # Qt resource file
+├── ZNote/              # Main project directory
+│   ├── assets/         # Resources (icons, styles, sounds)
+│   ├── include/        # Header files
+│   │   ├── app/       # Application core
+│   │   ├── component/  # UI components
+│   │   ├── core/      # Core functionality
+│   │   ├── services/  # Service layer
+│   │   ├── ui/        # UI classes
+│   │   └── utils/     # Utility functions
+│   ├── src/           # Source files
+│   ├── tests/         # Test files
+│   ├── CMakeLists.txt # CMake configuration
+│   └── resources.qrc  # Qt resource file
+├── CMakeLists.txt     # Root CMake configuration
 └── README.md          # This file
 ```
 
@@ -164,13 +186,13 @@ The application follows a layered architecture:
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) ([中文](CONTRIBUTING_zh.md)) for details on our code of conduct and the process for submitting pull requests.
+Contributions are welcome! Please read [ZNote/CONTRIBUTING.md](ZNote/CONTRIBUTING.md) ([中文](ZNote/CONTRIBUTING_zh.md)) for details on our code of conduct and the process for submitting pull requests.
 
 欢迎贡献！请阅读贡献指南了解详情。
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [ZNote/LICENSE](ZNote/LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -182,6 +204,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/1716285375/ZNote-dev/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/1716285375/ZNote-dev/discussions)
+- **QQ Group**: ZNote Open Source Project Group (Group ID: 491086094)
 
 ## 📅 Changelog
 
@@ -197,3 +220,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Note**: This project is for educational purposes. Please respect the terms of service of video platforms and copyright laws.
+

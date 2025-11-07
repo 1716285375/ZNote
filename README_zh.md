@@ -8,6 +8,26 @@
 
 一个现代化的跨平台桌面应用程序，用于从 Bilibili 和其他平台下载视频，基于 yt-dlp 构建。使用 Qt6 和 C++17 开发。
 
+## 🖼️ 程序界面
+
+### 主界面 - 视频解析
+![主界面](ZNote/assets/app/ZNote.png)
+
+ZNote 提供简洁直观的用户界面，左侧导航栏包含五个主要功能模块。主界面支持直接输入 Bilibili 视频 URL 进行解析，实时显示解析日志和进度信息。
+
+### 下载列表
+![下载列表](ZNote/assets/app/ZNote-download.png)
+
+下载列表页面展示所有已解析的视频信息，包括视频 ID、标题、集数、类型、解析时间和保存路径。支持批量选择和下载管理，可以方便地控制下载任务。
+
+### 设置页面
+![设置页面](ZNote/assets/app/ZNote-setting.png)
+
+设置页面提供丰富的配置选项，包括：
+- **基础下载配置**：默认保存路径、下载线程数
+- **文件命名规则**：自定义文件前缀/后缀
+- **下载完成操作**：提示音、自动打开目录等
+
 ## ✨ 功能特性
 
 - 🎬 **多平台支持**: 支持从 Bilibili 和其他 yt-dlp 支持的平台下载视频
@@ -115,18 +135,20 @@
 
 ```
 ZNote-dev/
-├── assets/              # 资源文件 (图标、样式、声音)
-├── include/             # 头文件
-│   ├── app/            # 应用程序核心
-│   ├── component/      # UI 组件
-│   ├── core/           # 核心功能
-│   ├── services/       # 服务层
-│   ├── ui/             # UI 类
-│   └── utils/           # 工具函数
-├── src/                # 源文件
-├── tests/              # 测试文件
-├── CMakeLists.txt      # CMake 配置
-├── resources.qrc       # Qt 资源文件
+├── ZNote/              # 主项目目录
+│   ├── assets/        # 资源文件 (图标、样式、声音)
+│   ├── include/       # 头文件
+│   │   ├── app/      # 应用程序核心
+│   │   ├── component/ # UI 组件
+│   │   ├── core/     # 核心功能
+│   │   ├── services/ # 服务层
+│   │   ├── ui/       # UI 类
+│   │   └── utils/    # 工具函数
+│   ├── src/          # 源文件
+│   ├── tests/        # 测试文件
+│   ├── CMakeLists.txt # CMake 配置
+│   └── resources.qrc # Qt 资源文件
+├── CMakeLists.txt     # 根 CMake 配置
 └── README.md          # 本文档
 ```
 
@@ -162,11 +184,11 @@ cmake --build out/build/release
 
 ## 🤝 贡献
 
-欢迎贡献！请阅读 [CONTRIBUTING_zh.md](CONTRIBUTING_zh.md) 了解贡献指南和提交 Pull Request 的流程。
+欢迎贡献！请阅读 [ZNote/CONTRIBUTING_zh.md](ZNote/CONTRIBUTING_zh.md) 了解贡献指南和提交 Pull Request 的流程。
 
 ## 📝 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目采用 MIT 许可证 - 查看 [ZNote/LICENSE](ZNote/LICENSE) 文件了解详情。
 
 ## 🙏 致谢
 
@@ -178,6 +200,7 @@ cmake --build out/build/release
 
 - **问题反馈**: [GitHub Issues](https://github.com/1716285375/ZNote-dev/issues)
 - **讨论**: [GitHub Discussions](https://github.com/1716285375/ZNote-dev/discussions)
+- **QQ 交流群**: ZNote 开源项目群 (群号: 491086094)
 
 ## 📅 更新日志
 
@@ -193,3 +216,4 @@ cmake --build out/build/release
 ---
 
 **注意**: 本项目仅供学习使用。请遵守视频平台的服务条款和版权法律。
+
