@@ -1,3 +1,8 @@
+/* ================================
+   ZNote Light Theme
+   优化后的浅色主题样式表
+   ================================ */
+
 /* 🌐 全局设置 */
 * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -5,11 +10,10 @@
     color: #2f3437;
 }
 
-/* 🌐 全局设置 */
-* {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #ffffff;
-    color: #2f3437;
+QFrame#frmLog,
+QFrame#frmTbw {
+    border: none;
+    background-color: transparent;
 }
 
 /* 🏷️ 应用 Logo 标题 */
@@ -21,7 +25,6 @@ QLabel#lblApp {
 QLabel#lblApp:hover {
     color: #1a56db;
 }
-
 
 /* 📑 标题 Label */
 QLabel#lblBasicTitle,
@@ -65,7 +68,6 @@ QLineEdit::placeholder {
     color: #999999;
 }
 
-
 /* 🔘 通用按钮基础 */
 QPushButton {
     border: 1px solid #d4d4d4;
@@ -75,33 +77,49 @@ QPushButton {
     font-weight: bold;
 }
 
+/* 🔵 导航按钮（白底蓝字，选中时蓝底白字） */
+QPushButton#btnResolve,
+QPushButton#btnDownloadList,
+QPushButton#btnDownloadStatus,
+QPushButton#btnSetting,
+QPushButton#btnAbout {
+    background-color: #ffffff;
+    color: #2f80ed;
+    border: 1px solid #2f80ed;
+}
 
-/* 🔵 主按钮（蓝底白字） */
+QPushButton#btnResolve:hover,
+QPushButton#btnDownloadList:hover,
+QPushButton#btnDownloadStatus:hover,
+QPushButton#btnSetting:hover,
+QPushButton#btnAbout:hover {
+    background-color: #f0f7ff;
+}
+
+QPushButton#btnResolve:pressed,
+QPushButton#btnDownloadList:pressed,
+QPushButton#btnDownloadStatus:pressed,
+QPushButton#btnSetting:pressed,
+QPushButton#btnAbout:pressed {
+    background-color: #dbe9ff;
+}
+
 QPushButton#btnResolve:checked,
 QPushButton#btnDownloadList:checked,
 QPushButton#btnDownloadStatus:checked,
-QPushButton#btnNote:checked,
-QPushButton#btnVideo:checked,
 QPushButton#btnSetting:checked,
 QPushButton#btnAbout:checked {
     background-color: #2f80ed;
     color: #ffffff;
     border: none;
 }
-QPushButton#btnDownload:hover {
-    background-color: #1a56db;
-}
-QPushButton#btnDownload:pressed {
-    background-color: #174bb5;
-}
 
-/* 🔵 主按钮（蓝底白字） */
+/* 🔵 主要操作按钮（蓝底白字） */
 QPushButton#btnDownload,
 QPushButton#btnPause,
-QPushButton#btnNoteEdit,
-QPushButton#btnNotePreview,
-QPushButton#btnNoteSplit,
+QPushButton#btnCrap,
 QPushButton#btnBrowseDir,
+QPushButton#btnClearHistory,
 QPushButton#pushButton_2, /* Setting 确认 */
 QPushButton#pushButton_3, /* Setting 取消 */
 QPushButton#pushButton_4,
@@ -111,25 +129,23 @@ QPushButton#pushButton_5 {
     border: none;
 }
 
-
 QPushButton#btnDownload:hover,
 QPushButton#btnPause:hover,
-QPushButton#btnNoteEdit:hover,
-QPushButton#btnNotePreview:hover,
-QPushButton#btnNoteSplit:hover,
+QPushButton#btnCrap:hover,
 QPushButton#btnBrowseDir:hover,
+QPushButton#btnClearHistory:hover,
 QPushButton#pushButton_2:hover,
 QPushButton#pushButton_3:hover,
 QPushButton#pushButton_4:hover,
 QPushButton#pushButton_5:hover {
     background-color: #1a56db;
 }
+
 QPushButton#btnDownload:pressed,
 QPushButton#btnPause:pressed,
-QPushButton#btnNoteEdit:pressed,
-QPushButton#btnNotePreview:pressed,
-QPushButton#btnNoteSplit:pressed,
+QPushButton#btnCrap:pressed,
 QPushButton#btnBrowseDir:pressed,
+QPushButton#btnClearHistory:pressed,
 QPushButton#pushButton_2:pressed,
 QPushButton#pushButton_3:pressed,
 QPushButton#pushButton_4:pressed,
@@ -137,54 +153,19 @@ QPushButton#pushButton_5:pressed {
     background-color: #174bb5;
 }
 
-
-/* ⚪ 次按钮（白底蓝字） */
-QPushButton#btnResolve,
-QPushButton#btnDownloadList,
-QPushButton#btnDownloadStatus,
-QPushButton#btnNote,
-QPushButton#btnVideo,
-QPushButton#btnSetting,
-QPushButton#btnAbout,
-QPushButton#btnDownload,
-QPushButton#btnPause,
-QPushButton#btnCrap {
-    background-color: #ffffff;
-    color: #2f80ed;
-    border: 1px solid #2f80ed;
-}
-
-QPushButton#btnResolve:hover,
-QPushButton#btnPause:hover,
-QPushButton#btnDownloadList:hover,
-QPushButton#btnDownloadStatus:hover,
-QPushButton#btnNote:hover,
-QPushButton#btnVideo:hover,
-QPushButton#btnSetting:hover,
-QPushButton#btnAbout:hover {
-    background-color: #f0f7ff;
-}
-QPushButton#btnResolve:pressed,
-QPushButton#btnPause:pressed,
-QPushButton#btnDownloadList:pressed,
-QPushButton#btnDownloadStatus:pressed,
-QPushButton#btnNote:pressed,
-QPushButton#btnVideo:pressed,
-QPushButton#btnSetting:pressed,
-QPushButton#btnAbout:pressed {
-    background-color: #dbe9ff;
-}
-
 /* ❌ 危险按钮 */
-QPushButton#btnClearLog {
+QPushButton#btnClearLog,
+QPushButton#btnClearHistory {
     background-color: #fef2f2;
     color: #b91c1c;
     border: 1px solid #fca5a5;
 }
-QPushButton#btnClearLog:hover {
+QPushButton#btnClearLog:hover,
+QPushButton#btnClearHistory:hover {
     background-color: #fee2e2;
 }
-QPushButton#btnClearLog:pressed {
+QPushButton#btnClearLog:pressed,
+QPushButton#btnClearHistory:pressed {
     background-color: #fecaca;
 }
 
@@ -219,21 +200,6 @@ QTabBar::tab:hover {
     color: #2f3437;
 }
 
-/* 🌳 树视图 */
-QTreeView#tvwNoteFile {
-    background-color: #ffffff;
-    alternate-background-color: #f9fafb;
-    color: #2f3437;
-    border: 1px solid #e1e1e0;
-}
-QTreeView#tvwNoteFile::item:selected {
-    background-color: #2f80ed;
-    color: #ffffff;
-}
-QTreeView#tvwNoteFile::item:hover {
-    background-color: #f0f7ff;
-}
-
 /* 📋 表格视图 */
 QTableView, QTableWidget {
     border: 1px solid #d4d4d4;
@@ -250,6 +216,7 @@ QComboBox {
     border-radius: 6px;
     padding: 4px 8px;
     background-color: #ffffff;
+    color: #000000;
 }
 QComboBox:hover {
     border: 1px solid #2f80ed;
@@ -257,8 +224,31 @@ QComboBox:hover {
 QComboBox::drop-down {
     border-left: 1px solid #d4d4d4;
 }
+QComboBox::down-arrow {
+    image: url(:/icons/down-arrow.png);
+    width: 12px;
+    height: 12px;
+}
 QComboBox QAbstractItemView {
     background: #ffffff;
+    outline: 0;
+    border: 1px solid #d4d4d4;
+}
+QComboBox QAbstractItemView::item {
+    color: #000000;
+    padding: 4px 8px;
+}
+QComboBox QAbstractItemView::item:hover {
+    background: #f0f7ff;
+    color: #000000;
+}
+QComboBox QAbstractItemView::item:selected {
+    background: #2f80ed;
+    color: #ffffff;
+}
+QComboBox:editable QLineEdit {
+    background: #ffffff;
+    color: #000000;
     selection-background-color: #2f80ed;
     selection-color: #ffffff;
 }
@@ -284,4 +274,87 @@ QTextBrowser#tbwLog {
     border: 1px solid #e1e1e0;
     border-radius: 6px;
     color: #2f3437;
+}
+
+/* 📜 滚动条样式 */
+QScrollBar:vertical {
+    width: 12px;
+    background: #F3F4F6;
+    border-radius: 6px;
+}
+QScrollBar::handle:vertical {
+    background: #2563EB;
+    min-height: 20px;
+    border-radius: 6px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #1D4ED8;
+}
+QScrollBar::handle:vertical:pressed {
+    background: #1E40AF;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    height: 12px;
+    background: #F3F4F6;
+}
+QScrollBar::handle:horizontal {
+    background: #2563EB;
+    min-width: 20px;
+    border-radius: 6px;
+}
+QScrollBar::handle:horizontal:hover {
+    background: #1D4ED8;
+}
+QScrollBar::handle:horizontal:pressed {
+    background: #1E40AF;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* ☑️ QCheckBox */
+QCheckBox {
+    spacing: 8px;
+    font-size: 14px;
+    color: #2f3437;
+}
+QCheckBox:hover {
+    color: #1a56db;
+}
+QCheckBox:disabled {
+    color: #9ca3af;
+}
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #2f80ed;
+    background-color: #f0f7ff;
+}
+QCheckBox::indicator:checked {
+    border: 1px solid #2f80ed;
+    background-color: #2f80ed;
+    image: url(:/icons/checkmark.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+QCheckBox::indicator:checked:pressed {
+    background-color: #1a56db;
+    border: 1px solid #1a56db;
+}
+QCheckBox::indicator:disabled {
+    border: 1px solid #d1d5db;
+    background-color: #f3f4f6;
+}
+QCheckBox::indicator:checked:disabled {
+    background-color: #9ca3af;
+    border: 1px solid #9ca3af;
 }

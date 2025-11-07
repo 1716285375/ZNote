@@ -13,10 +13,14 @@
         <file alias="left-banner-videoresolve.png">assets/icons/left-banner-videoresolve.png</file>
     </qresource>
     <qresource prefix="/qss">
-        <file alias="app.qss">assets/style/app.qss</file>
+        <file alias="light.qss">assets/style/light.qss</file>
+        <file alias="dark.qss">assets/style/dark.qss</file>
     </qresource>
     <qresource prefix="/app">
         <file alias="logo.ico">assets/app/logo.ico</file>
+    </qresource>
+    <qresource prefix="/sound">
+        <file alias="download-success.wav">assets/sound/download-success.wav</file>
     </qresource>
     <qresource prefix="/">
         <file alias="media/edit-find-replace.svg">assets/svg/edit-find-replace.svg</file>

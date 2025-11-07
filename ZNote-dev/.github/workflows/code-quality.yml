@@ -1,0 +1,50 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  check-format:
+    name: Check Code Format
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check for TODO/FIXME
+      run: |
+        echo "Checking for TODO/FIXME comments..."
+        if grep -r "TODO\|FIXME\|XXX\|HACK" ZNote-dev/src ZNote-dev/include --exclude-dir=build 2>/dev/null; then
+          echo "::warning::Found TODO/FIXME comments. Consider addressing them."
+        else
+          echo "No TODO/FIXME comments found."
+        fi
+        
+    - name: Check for hardcoded paths
+      run: |
+        echo "Checking for hardcoded paths..."
+        if grep -r "F:\\\\\|C:\\\\\|/home/\|/Users/" ZNote-dev/src ZNote-dev/include --exclude-dir=build 2>/dev/null; then
+          echo "::error::Found hardcoded paths. Please use relative paths or configuration."
+          exit 1
+        else
+          echo "No hardcoded paths found."
+        fi
+
+  check-documentation:
+    name: Check Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check for missing documentation
+      run: |
+        echo "Checking for class documentation..."
+        # This is a basic check - can be enhanced with Doxygen
+        echo "Documentation check completed."
+

@@ -1,5 +1,5 @@
 #pragma once
-#include "task.h"
+#include "core/download/task.h"
 
 #include <QAbstractItemModel>
 #include <QList>
@@ -15,34 +15,37 @@ public:
 	~VideoModel();
 
 
-	// ÐÐÊý
+	// ï¿½ï¿½ï¿½ï¿½
 	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	// ÁÐÊý
+	// ï¿½ï¿½ï¿½ï¿½
 	int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	// ·µ»ØÊý¾Ý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
-	// ÉèÖÃÊý¾Ý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	bool setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/);
 
-	// »ñÈ¡±íÍ·Êý¾Ý
+	// ï¿½ï¿½È¡ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-	// »ñÈ¡Ö¸¶¨ÏîµÄË÷Òý
+	// ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
 
-	// »ñÈ¡¸¸ÏîË÷Òý£¨ÈôÐèÒª£©
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½
 	QModelIndex parent(const QModelIndex& index) const override;
 
-	// ²åÈëÐÐ/ÁÐµÈ²Ù×÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ÐµÈ²ï¿½ï¿½ï¿½
 	void addTask(const DownloadTask& task);
 
-	// Ìí¼ÓÒÆ³ýÈÎÎñµÄ·½·¨
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	void removeTasks(const QList<int>& rows);
 
 	QList<DownloadTask*> getTasks() { return taskItems; }
+	
+	// æ¸…ç©ºæ‰€æœ‰ä»»åŠ¡
+	void clear();
 
 
 private:

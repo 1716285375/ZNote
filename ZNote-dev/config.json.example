@@ -8,5 +8,13 @@
       "playSound": true,
       "autoOpenDir": false
     }
+  },
+  "ui": {
+    "theme": 0,
+    "windowGeometry": {
+      "width": 934,
+      "height": 679
+    }
   }
 }
+

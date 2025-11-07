@@ -14,7 +14,6 @@ VideoModel::~VideoModel()
 int VideoModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
 	if (parent.isValid()) {
-		qDebug() << "Invalid index!";
 		return 0;
 	}
 	return taskItems.count();
@@ -22,14 +21,13 @@ int VideoModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 
 int VideoModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
-	return 7;	// 7ÁĞ£ºID, ÊÓÆµ±êÌâ, ¼¯Êı, ÀàĞÍ, ½âÎöÊ±¼ä, ±£´æÂ·¾¶, ÏÂÔØ×´Ì¬
+	return 7;	// 7åˆ—ï¼šID, è§†é¢‘æ ‡é¢˜, é›†æ•°, ç±»å‹, è§£ææ—¶é—´, ä¿å­˜è·¯å¾„, ä¸‹è½½çŠ¶æ€
 }
 
 QVariant VideoModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
 {
 	if (!index.isValid())
 	{
-		qDebug() << "Invalid index!";
 		return QVariant();
 	}
 
@@ -49,15 +47,13 @@ QVariant VideoModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole
 			return task->resolveTime.toString("yyyy-MM-dd HH:mm:ss");
 		case 5:
 			return task->savePath;
-		//case 6:
-		//	return task->isSelected ? Qt::Checked : Qt::Unchecked;  // ·µ»Ø Qt::Checked »ò Qt::Unchecked
 		default:
 			return QVariant();
 		}
 	}
 
-	// ´¦Àí¸´Ñ¡¿ò×´Ì¬
-	if (role == Qt::CheckStateRole && index.column() == 6) {  // ´¦Àí¸´Ñ¡¿ò×´Ì¬
+	// å¤„ç†å¤é€‰æ¡†çŠ¶æ€
+	if (role == Qt::CheckStateRole && index.column() == 6) {  // å¤„ç†å¤é€‰æ¡†çŠ¶æ€
 		return task->isSelected ? Qt::Checked : Qt::Unchecked;
 	}
 
@@ -67,18 +63,14 @@ QVariant VideoModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole
 bool VideoModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
 	if (!index.isValid()) {
-		qDebug() << "Invalid index!";
 		return false;
 	}
 
-	qDebug() << "Checkbox state updated to: " << value;
-
-	if (role == Qt::CheckStateRole && index.column() == 6) {  // Ö»¸üĞÂ¸´Ñ¡¿òÁĞ
+	if (role == Qt::CheckStateRole && index.column() == 6) {  // åªæ›´æ–°å¤é€‰æ¡†åˆ—
 		bool checked = value.toBool();
-		taskItems[index.row()]->isSelected = checked;  // ¸üĞÂÈÎÎñµÄÑ¡ÖĞ×´Ì¬
+		taskItems[index.row()]->isSelected = checked;  // æ›´æ–°ä»»åŠ¡çš„é€‰ä¸­çŠ¶æ€
 
-
-		emit dataChanged(index, index, { role });  // Í¨ÖªÊÓÍ¼¸üĞÂ
+		emit dataChanged(index, index, { role });  // é€šçŸ¥è§†å›¾æ›´æ–°
 		return true;
 	}
 
@@ -120,7 +112,7 @@ QModelIndex VideoModel::index(int row, int column, const QModelIndex& parent /*=
 
 QModelIndex VideoModel::parent(const QModelIndex& index) const
 {
-	return QModelIndex();  // Ã»ÓĞ¸¸Ïî
+	return QModelIndex();  // æ²¡æœ‰çˆ¶èŠ‚ç‚¹
 }
 
 void VideoModel::addTask(const DownloadTask& task)
@@ -133,24 +125,40 @@ void VideoModel::addTask(const DownloadTask& task)
 
 void VideoModel::removeTasks(const QList<int>& rows)
 {
-	// ±ØĞë´Ó×îºóÒ»ĞĞ¿ªÊ¼É¾³ı£¬ÒÔ±ÜÃâÉ¾³ıÊ±ĞĞË÷Òı±ä»¯
+	// ä»åå¾€å‰å¼€å§‹åˆ é™¤ï¼Œé¿å…åˆ é™¤æ—¶ç´¢å¼•å˜åŒ–
 	if (rows.isEmpty()) return;
 
 	QList<int> sortedRows = rows;
-	std::sort(sortedRows.begin(), sortedRows.end(), std::greater<int>()); // °´½µĞòÅÅÁĞ
+	std::sort(sortedRows.begin(), sortedRows.end(), std::greater<int>()); // é™åºæ’åˆ—
 
-	beginRemoveRows(QModelIndex(), sortedRows.last(), sortedRows.first()); // ´ÓÊ×Î²É¾³ıĞĞ
+	beginRemoveRows(QModelIndex(), sortedRows.last(), sortedRows.first()); // ä»åå¾€å‰åˆ é™¤
 
 	for (int row : sortedRows) {
 		if (row < 0 || row >= taskItems.count()) {
-			continue;  // Ìø¹ıÎŞĞ§ĞĞ
+			continue;  // è·³è¿‡æ— æ•ˆç´¢å¼•
 		}
-		// ÊÍ·ÅÈÎÎñÖ¸Õë
+		// é‡Šæ”¾ä»»åŠ¡æŒ‡é’ˆ
 		DownloadTask* task = taskItems.at(row);
 		delete task;
-		taskItems.removeAt(row);  // ´Ó QList ÖĞÒÆ³ı¸ÃÈÎÎñ
+		taskItems.removeAt(row);  // ä» QList ä¸­ç§»é™¤è¯¥é¡¹
 	}
 
-	endRemoveRows();  // Í¨ÖªÊÓÍ¼½áÊøÒÆ³ıĞĞ
+	endRemoveRows();  // é€šçŸ¥è§†å›¾å·²ç§»é™¤
 }
 
+void VideoModel::clear()
+{
+	if (taskItems.isEmpty()) {
+		return;
+	}
+	
+	beginRemoveRows(QModelIndex(), 0, taskItems.count() - 1);
+	
+	// é‡Šæ”¾æ‰€æœ‰ä»»åŠ¡æŒ‡é’ˆ
+	for (DownloadTask* task : taskItems) {
+		delete task;
+	}
+	
+	taskItems.clear();
+	endRemoveRows();
+}

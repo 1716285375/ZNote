@@ -18,7 +18,7 @@ int HistoryModel::rowCount(const QModelIndex& parent /*= QModelIndex()*/) const
 
 int HistoryModel::columnCount(const QModelIndex& parent /*= QModelIndex()*/) const
 {
-	return 8;	// 8ÁĞ£ºID, ÊÓÆµ±êÌâ, ¼¯Êı, ÀàĞÍ, ±£´æÂ·¾¶, ¿ªÊ¼ÏÂÔØÊ±¼ä, ½áÊøÏÂÔØÊ±¼ä, ÏÂÔØ×´Ì¬
+	return 8;	// 8åˆ—ï¼šID, è§†é¢‘æ ‡é¢˜, é›†æ•°, ç±»å‹, ä¿å­˜è·¯å¾„, å¼€å§‹ä¸‹è½½æ—¶é—´, ç»“æŸä¸‹è½½æ—¶é—´, ä¸‹è½½çŠ¶æ€
 }
 
 QVariant HistoryModel::data(const QModelIndex& index, int role /*= Qt::DisplayRole*/) const
@@ -57,11 +57,6 @@ QVariant HistoryModel::data(const QModelIndex& index, int role /*= Qt::DisplayRo
 	return QVariant();
 }
 
-//bool HistoryModel::setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/)
-//{	
-//	return true;
-//}
-
 QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 	if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
@@ -98,7 +93,7 @@ QModelIndex HistoryModel::index(int row, int column, const QModelIndex& parent /
 
 QModelIndex HistoryModel::parent(const QModelIndex& index) const
 {
-	return QModelIndex();  // Ã»ÓĞ¸¸Ïî
+	return QModelIndex();  // æ²¡æœ‰çˆ¶èŠ‚ç‚¹
 }
 
 void HistoryModel::addhistory(const DownloadHistoryItem& history)
@@ -110,22 +105,57 @@ void HistoryModel::addhistory(const DownloadHistoryItem& history)
 
 void HistoryModel::removehistorys(const QList<int>& rows)
 {
-	// ±ØĞë´Ó×îºóÒ»ĞĞ¿ªÊ¼É¾³ı£¬ÒÔ±ÜÃâÉ¾³ıÊ±ĞĞË÷Òı±ä»¯
+	// ä»åå¾€å‰å¼€å§‹åˆ é™¤ï¼Œé¿å…åˆ é™¤æ—¶ç´¢å¼•å˜åŒ–
 	if (rows.isEmpty()) return;
 
 	QList<int> sortedRows = rows;
-	std::sort(sortedRows.begin(), sortedRows.end(), std::greater<int>()); // °´½µĞòÅÅÁĞ
+	std::sort(sortedRows.begin(), sortedRows.end(), std::greater<int>()); // é™åºæ’åˆ—
 
-	beginRemoveRows(QModelIndex(), sortedRows.last(), sortedRows.first()); // ´ÓÊ×Î²É¾³ıĞĞ
+	beginRemoveRows(QModelIndex(), sortedRows.last(), sortedRows.first()); // ä»åå¾€å‰åˆ é™¤
 
 	for (int row : sortedRows) {
 		if (row < 0 || row >= historyItems.count()) {
-			continue;  // Ìø¹ıÎŞĞ§ĞĞ
+			continue;  // è·³è¿‡æ— æ•ˆç´¢å¼•
 		}
 
-		historyItems.removeAt(row);  // ´Ó QList ÖĞÒÆ³ı¸ÃÈÎÎñ
+		historyItems.removeAt(row);  // ä» QList ä¸­ç§»é™¤è¯¥é¡¹
 	}
 
-	endRemoveRows();  // Í¨ÖªÊÓÍ¼½áÊøÒÆ³ıĞĞ
+	endRemoveRows();  // é€šçŸ¥è§†å›¾å·²ç§»é™¤
 }
 
+void HistoryModel::removeHistory(int row)
+{
+	if (row < 0 || row >= historyItems.count()) {
+		return;
+	}
+	
+	beginRemoveRows(QModelIndex(), row, row);
+	historyItems.removeAt(row);
+	endRemoveRows();
+}
+
+void HistoryModel::clearHistory()
+{
+	if (historyItems.isEmpty()) {
+		return;
+	}
+	
+	beginRemoveRows(QModelIndex(), 0, historyItems.count() - 1);
+	historyItems.clear();
+	endRemoveRows();
+}
+
+void HistoryModel::refresh()
+{
+	// é€šçŸ¥è§†å›¾æ•°æ®å·²æ›´æ–°
+	beginResetModel();
+	endResetModel();
+}
+
+void HistoryModel::setHistory(const QList<DownloadHistoryItem> &items)
+{
+	beginResetModel();
+	historyItems = items;
+	endResetModel();
+}

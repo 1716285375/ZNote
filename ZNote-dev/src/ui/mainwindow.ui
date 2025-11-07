@@ -1,0 +1,1850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>934</width>
+    <height>679</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">/* 🌐 全局设置 */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
+    color: #2f3437;
+	background-color: #fff
+}
+
+QFrame#frmLog,
+QFrame#frmTbw
+{
+	border: none;
+	background-color: transparent;
+}
+
+/* 🏷️ 应用 Logo 标题 */
+QLabel#lblApp {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2f80ed;
+}
+QLabel#lblApp:hover {
+    color: #1a56db;
+}
+
+
+/* 📑 标题 Label */
+QLabel#lblBasicTitle,
+QLabel#lblNameFileTitle,
+QLabel#lblLogTitle {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 8px;
+    border-left: 3px solid #2f80ed;
+    color: #2f3437;
+}
+
+/* 💬 提示文字 */
+QLabel#lblDownloadCompleteTitleTip,
+QLabel#lblDownloadThreadTip,
+QLabel#lblDefaultSavepathTip,
+QLabel#lblNameFileRuleTip,
+QLabel#lblOriginFileName,
+QLabel#lblCopyrightTip {
+    font-size: 12px;
+    color: #6b6b6b;
+    font-style: italic;
+}
+
+/* ✏️ 输入框 */
+QLineEdit, QPlainTextEdit, QTextEdit {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #ffffff;
+    color: #2f3437;
+}
+QLineEdit:hover, QPlainTextEdit:hover, QTextEdit:hover {
+    border: 1px solid #2f80ed;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus {
+    border: 1px solid #2f80ed;
+    background-color: #f0f7ff;
+}
+QLineEdit::placeholder {
+    color: #999999;
+}
+
+/* 🔘 通用按钮基础 */
+QPushButton {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* 🔵 主按钮（蓝底白字） */
+
+QPushButton#btnResolve,
+QPushButton#btnDownloadList,
+QPushButton#btnDownloadStatus,
+QPushButton#btnNote,
+QPushButton#btnVideo,
+QPushButton#btnSetting,
+QPushButton#btnAbout,
+QPushButton#btnDownload,
+QPushButton#btnPause,
+QPushButton#btnCrap {
+    background-color: #ffffff;
+    color: #2f80ed;
+    border: 1px solid #2f80ed;
+}
+
+QPushButton#btnResolve:hover,
+QPushButton#btnPause:hover,
+QPushButton#btnDownloadList:hover,
+QPushButton#btnDownloadStatus:hover,
+QPushButton#btnNote:hover,
+QPushButton#btnVideo:hover,
+QPushButton#btnSetting:hover,
+QPushButton#btnAbout:hover {
+    background-color: #f0f7ff;
+}
+QPushButton#btnResolve:pressed,
+QPushButton#btnPause:pressed,
+QPushButton#btnDownloadList:pressed,
+QPushButton#btnDownloadStatus:pressed,
+QPushButton#btnNote:pressed,
+QPushButton#btnVideo:pressed,
+QPushButton#btnSetting:pressed,
+QPushButton#btnAbout:pressed {
+    background-color: #dbe9ff;
+}
+
+QPushButton#btnResolve:checked,
+QPushButton#btnDownloadList:checked,
+QPushButton#btnDownloadStatus:checked,
+QPushButton#btnNote:checked,
+QPushButton#btnVideo:checked,
+QPushButton#btnSetting:checked,
+QPushButton#btnAbout:checked {
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
+}
+QPushButton#btnDownload:hover {
+    background-color: #1a56db;
+}
+QPushButton#btnDownload:pressed {
+    background-color: #174bb5;
+}
+
+/* 🔵 次按钮 */
+QPushButton#btnDownload,
+QPushButton#btnPause,
+QPushButton#btnNoteEdit,
+QPushButton#btnNotePreview,
+QPushButton#btnNoteSplit,
+QPushButton#btnBrowseDir,
+QPushButton#btnOpenNoteDir,
+QPushButton#pushButton_2, /* Setting 确认 */
+QPushButton#pushButton_3, /* Setting 取消 */
+QPushButton#pushButton_4,
+QPushButton#pushButton_5 {
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
+}
+
+
+QPushButton#btnDownload:hover,
+QPushButton#btnPause:hover,
+QPushButton#btnNoteEdit:hover,
+QPushButton#btnNotePreview:hover,
+QPushButton#btnNoteSplit:hover,
+QPushButton#btnBrowseDir:hover,
+QPushButton#btnOpenNoteDir:hover,
+QPushButton#pushButton_2:hover,
+QPushButton#pushButton_3:hover,
+QPushButton#pushButton_4:hover,
+QPushButton#pushButton_5:hover {
+    background-color: #1a56db;
+}
+QPushButton#btnDownload:pressed,
+QPushButton#btnPause:pressed,
+QPushButton#btnNoteEdit:pressed,
+QPushButton#btnNotePreview:pressed,
+QPushButton#btnNoteSplit:pressed,
+QPushButton#btnBrowseDir:pressed,
+QPushButton#btnOpenNoteDir:pressed,
+QPushButton#pushButton_2:pressed,
+QPushButton#pushButton_3:pressed,
+QPushButton#pushButton_4:pressed,
+QPushButton#pushButton_5:pressed {
+    background-color: #174bb5;
+}
+
+
+/* ❌ 危险按钮 */
+QPushButton#btnClearLog,
+QPushButton#btnClearHistory {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+QPushButton#btnClearLog:hover,
+QPushButton#btnClearHistory:hover {
+    background-color: #fee2e2;
+}
+QPushButton#btnClearLog:pressed,
+QPushButton#btnClearHistory:pressed {
+    background-color: #fecaca;
+}
+
+/* 📊 进度条 */
+QProgressBar#pbarDownload {
+    background-color: #f1f1f0;
+    border-radius: 6px;
+    color: #2f3437;
+    text-align: center;
+}
+QProgressBar#pbarDownload::chunk {
+    background-color: #2f80ed;
+    border-radius: 6px;
+}
+
+/* 🗂️ Tab 样式 */
+QTabBar::tab {
+    background: #f7f6f3;
+    color: #6b6b6b;
+    padding: 8px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+QTabBar::tab:selected {
+    background: #ffffff;
+    color: #2f80ed;
+    font-weight: bold;
+    border-bottom: 2px solid #2f80ed;
+}
+QTabBar::tab:hover {
+    background: #f0f7ff;
+    color: #2f3437;
+}
+
+/* 🌳 树视图 */
+QTreeView#tvwNoteFile {
+    background-color: #ffffff;
+    alternate-background-color: #f9fafb;
+    color: #2f3437;
+    border: 1px solid #e1e1e0;
+}
+QTreeView#tvwNoteFile::item:selected {
+    background-color: #2f80ed;
+    color: #ffffff;
+}
+QTreeView#tvwNoteFile::item:hover {
+    background-color: #f0f7ff;
+}
+
+/* 📋 表格视图 */
+QTableView, QTableWidget {
+    border: 1px solid #d4d4d4;
+    gridline-color: #e1e1e0;
+    background-color: #ffffff;
+    alternate-background-color: #f9fafb;
+    selection-background-color: #2f80ed;
+    selection-color: #ffffff;
+}
+
+/* 🔽 下拉框 */
+QComboBox {
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #ffffff;
+    color: #000000;                 /* 关闭状态文字颜色 */
+}
+
+QComboBox:hover {
+    border: 1px solid #2f80ed;
+}
+
+QComboBox::drop-down {
+    border-left: 1px solid #d4d4d4;
+}
+
+/* 下拉箭头图标 */
+QComboBox::down-arrow {
+    image: url(:/icons/down-arrow.png);  /* 你的资源路径 */
+    width: 12px;
+    height: 12px;
+}
+
+/* 下拉面板本体（视图容器） */
+QComboBox QAbstractItemView {
+    background: #ffffff;            /* 面板背景 */
+    outline: 0;
+    border: 1px solid #d4d4d4;
+}
+
+/* 列表项的默认/悬停/选中状态（关键：给 ::item 明确设色） */
+QComboBox QAbstractItemView::item {
+    color: #000000;                 /* 非选中项文字 */
+    padding: 4px 8px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background: #f0f7ff;
+    color: #000000;
+}
+
+QComboBox QAbstractItemView::item:selected {
+    background: #2f80ed;           /* 选中：蓝底白字 */
+    color: #ffffff;
+}
+
+/* 如果你的项目里有指定 objectName（如 cmbThreads），一并覆盖 */
+QComboBox#cmbThreads,
+QComboBox#cmbThreads QAbstractItemView,
+QComboBox#cmbThreads QAbstractItemView::item,
+QComboBox#cmbThreads QAbstractItemView::item:hover,
+QComboBox#cmbThreads QAbstractItemView::item:selected { /* 占位以提高权重 */ }
+
+/* 可选：可编辑的 ComboBox 内的行编辑器 */
+QComboBox:editable QLineEdit {
+    background: #ffffff;
+    color: #000000;
+    selection-background-color: #2f80ed;
+    selection-color: #ffffff;
+}
+
+
+
+
+/* 🛠️ 工具按钮 */
+QToolButton {
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+QToolButton:hover {
+    background-color: #f0f7ff;
+    border: 1px solid #2f80ed;
+}
+QToolButton:pressed {
+    background-color: #dbe9ff;
+}
+
+/* 📑 只读 QTextBrowser */
+QTextBrowser#tbwLog {
+    background-color: #ffffff;
+    border: 1px solid #e1e1e0;
+    border-radius: 6px;
+    color: #2f3437;
+}
+
+
+/* 滚动条样式 */
+QScrollBar:vertical {
+    width: 12px;
+    background: #F3F4F6;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #2563EB;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #1D4ED8;
+}
+
+QScrollBar::handle:vertical:pressed {
+    background: #1E40AF;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    height: 12px;
+    background: #F3F4F6;
+}
+
+QScrollBar::handle:horizontal {
+    background: #2563EB;
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #1D4ED8;
+}
+
+QScrollBar::handle:horizontal:pressed {
+    background: #1E40AF;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* QCheckBox */
+/* 📦 QCheckBox 基础文字 */
+QCheckBox {
+    spacing: 8px;                        /* 文字与勾选框的间距 */
+    font-size: 14px;
+    color: #2f3437;                      /* 默认文字颜色 */
+}
+
+/* 🌐 鼠标悬停时文字颜色变化 */
+QCheckBox:hover {
+    color: #1a56db;
+}
+
+/* ❌ 禁用时文字变灰 */
+QCheckBox:disabled {
+    color: #9ca3af;
+}
+
+/* 🔲 勾选框基础 */
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;                  /* 轻微圆角 */
+    border: 1px solid #cbd5e1;           /* 浅灰边框 */
+    background-color: #ffffff;           /* 默认白底 */
+}
+
+/* 🌐 悬停时边框高亮 */
+QCheckBox::indicator:hover {
+    border: 1px solid #2f80ed;
+    background-color: #f0f7ff;
+}
+
+/* ✅ 勾选状态 */
+QCheckBox::indicator:checked {
+    border: 1px solid #2f80ed;
+    background-color: #2f80ed;           /* 蓝底 */
+    image: url(:/icons/checkmark.png);   /* ✅ 自定义打勾图标 */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 👆 按下时深蓝色 */
+QCheckBox::indicator:checked:pressed {
+    background-color: #1a56db;
+    border: 1px solid #1a56db;
+}
+
+/* ❌ 禁用状态 */
+QCheckBox::indicator:disabled {
+    border: 1px solid #d1d5db;
+    background-color: #f3f4f6;
+}
+
+/* 禁用 + 勾选 */
+QCheckBox::indicator:checked:disabled {
+    background-color: #9ca3af;
+    border: 1px solid #9ca3af;
+}
+
+
+</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>2</number>
+    </property>
+    <property name="horizontalSpacing">
+     <number>6</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QFrame" name="frmLeft">
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6" stretch="1,4,0,0,0,0,0,1,0">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblApp">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>-apple-system</family>
+           <pointsize>-1</pointsize>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>ArrowCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>ZNote</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spcVLeftUp">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>100</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmResolve">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblResolve">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/left-banner-videoresolve.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnResolve">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>视频解析</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmDownloadList">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblDownloadList">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/left-banner-downloadlist.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnDownloadList">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>下载列表</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmDownloadStatus">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblDownloadStatus">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/left-banner-downloadabout.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnDownloadStatus">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>下载情况</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmSetting">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblSetting">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::TextFormat::PlainText</enum>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/left-banner-setting.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnSetting">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>设置</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmAbout">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblAbout">
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/left-banner-about.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btnAbout">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>关于</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spcVLeftDown">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frmFootscript">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblAppVersion">
+            <property name="layoutDirection">
+             <enum>Qt::LayoutDirection::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>版本: v1.0.0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblCopyright">
+            <property name="text">
+             <string>© 2025 ZNote Pro</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblCopyrightTip">
+            <property name="text">
+             <string>请遵守版权法规，合法使用本工具</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stwMain">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="pageResolve">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frmPageResolve">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="lytHBannar" stretch="5,4,0">
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="edtUrl">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Maximum</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>80</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnCrap">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>解析</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QWidget" name="wgtLeft" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="wgtRight" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QFrame" name="frmLog">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="lytHLog">
+                     <item>
+                      <widget class="QLabel" name="lblLogTitle">
+                       <property name="font">
+                        <font>
+                         <family>-apple-system</family>
+                         <pointsize>-1</pointsize>
+                         <fontweight>DemiBold</fontweight>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>下载日志</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="spcHLog">
+                       <property name="orientation">
+                        <enum>Qt::Orientation::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btnClearLog">
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="text">
+                        <string>清空日志</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="resources.qrc">
+                         <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="lytVTbw" stretch="5">
+                  <item>
+                   <widget class="QFrame" name="frmTbw">
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_11" stretch="9,1">
+                     <property name="spacing">
+                      <number>10</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QTextBrowser" name="tbwLog">
+                       <property name="html">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial','sans-serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Consolas','Monaco','Menlo','DejaVu Sans Mono','Liberation Mono','Courier New','monospace'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="lytHProgress">
+                       <property name="spacing">
+                        <number>20</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>6</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="lblProgressTitle">
+                         <property name="text">
+                          <string>下载进度</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QProgressBar" name="pbarDownload">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>6</height>
+                          </size>
+                         </property>
+                         <property name="value">
+                          <number>0</number>
+                         </property>
+                         <property name="textVisible">
+                          <bool>false</bool>
+                         </property>
+                         <property name="invertedAppearance">
+                          <bool>false</bool>
+                         </property>
+                         <property name="textDirection">
+                          <enum>QProgressBar::Direction::BottomToTop</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="lblProgress">
+                         <property name="text">
+                          <string>0%</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageDownloadList">
+       <layout class="QVBoxLayout" name="verticalLayout_20" stretch="1,9">
+        <item>
+         <widget class="QFrame" name="frmPageDownloadListBanner">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_19">
+           <item>
+            <widget class="QFrame" name="frame">
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>视频下载列表</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="chkSelectAll">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>全部选中</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnDownload">
+                <property name="text">
+                 <string>开始下载</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnPause">
+                <property name="text">
+                 <string>暂停下载</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frmPageDownloadListContent">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QTableView" name="tblDownloadList">
+             <property name="font">
+              <font>
+               <family>-apple-system</family>
+              </font>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed|QAbstractItemView::EditTrigger::SelectedClicked</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageDownloadStatus">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frmPageDownloadStatus">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_18">
+           <item>
+            <widget class="QFrame" name="frame_9">
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>下载记录</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnClearHistory">
+                <property name="text">
+                 <string>清空全部记录</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_10">
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QTableView" name="tblDownloadHistory"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageSetting">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frmPageSetting">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="1" column="0">
+            <widget class="QTabWidget" name="tabSetting">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tabDownloadSetting">
+              <attribute name="title">
+               <string>Tab 1</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_17">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="frmDownloadSettingBasic">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>200</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <layout class="QHBoxLayout" name="lytHBasic">
+                    <item>
+                     <widget class="QLabel" name="lblBasicTitle">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>基础下载配置</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                    <item>
+                     <widget class="QFrame" name="frame_6">
+                      <property name="frameShape">
+                       <enum>QFrame::Shape::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Shadow::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_3">
+                       <item>
+                        <widget class="QLabel" name="lblDefaultSavepath">
+                         <property name="text">
+                          <string>默认保存路径</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="lblDefaultSavepathTip">
+                         <property name="text">
+                          <string>设置文件下载后的默认存储位置</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="spcHBasic">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Policy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>60</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="lytSaveLocation">
+                      <item>
+                       <widget class="QLineEdit" name="edtSaveDir"/>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_8">
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                         <enum>QSizePolicy::Policy::Fixed</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btnBrowseDir">
+                        <property name="minimumSize">
+                         <size>
+                          <width>80</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="text">
+                         <string>浏览</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frmDownloadSettingThread">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_9">
+                  <item>
+                   <widget class="QFrame" name="frame_8">
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_13">
+                     <item>
+                      <widget class="QLabel" name="lblDownloadThreadTitle">
+                       <property name="text">
+                        <string>下载线程数</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="lblDownloadThreadTip">
+                       <property name="text">
+                        <string>设置同时下载的线程数量 (1-10)</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="spcHThread">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="cmbThreads">
+                    <property name="minimumSize">
+                     <size>
+                      <width>80</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>1线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>2线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>3线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>4线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>5线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>6线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>7线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>8线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>9线程</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>10线程</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frmDownloadSettingName">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>200</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_15" stretch="0,0">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="lblNameFileTitle">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>文件命名与通知</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="lytHNameFile">
+                    <property name="spacing">
+                     <number>9</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>9</number>
+                    </property>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_14">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="lblNameFileRuleTitle">
+                        <property name="text">
+                         <string>自动命名规则</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="lblNameFileRuleTip">
+                        <property name="text">
+                         <string>自定义下载文件的前缀/后缀命名格式</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="edtPrefixFileName">
+                      <property name="placeholderText">
+                       <string>前缀 (可选)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lblOriginFileName">
+                      <property name="text">
+                       <string>+ 原始文件名 +</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="edtSuffixFileName">
+                      <property name="placeholderText">
+                       <string>后缀 (可选)</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frmDownloadSettingComplete">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>100</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <layout class="QVBoxLayout" name="lytVDownloadComplete">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="lblDownloadCompleteTitle">
+                      <property name="text">
+                       <string>下载完成后操作</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lblDownloadCompleteTitleTip">
+                      <property name="text">
+                       <string>设置文件下载完成后的触发行为</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer name="spcHDownloadComplete">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Policy::Expanding</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="chkPlaySound">
+                    <property name="minimumSize">
+                     <size>
+                      <width>140</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>开启提示音</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="chkOpenDir">
+                    <property name="minimumSize">
+                     <size>
+                      <width>140</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="text">
+                     <string>自动打开目录</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QFrame" name="frmPageSettingFoot">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <spacer name="spcHBtnSetting">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>560</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnResetSetting">
+                <property name="text">
+                 <string>重置</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnSaveSetting">
+                <property name="text">
+                 <string>保存设置</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageAbout"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>934</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+  <include location="resources.qrc"/>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

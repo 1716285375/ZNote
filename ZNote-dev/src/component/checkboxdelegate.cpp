@@ -12,7 +12,6 @@ void CheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 {
 	if (index.column() == 6) { // 第 6 列是复选框列
 		bool checked = index.data(Qt::CheckStateRole).toBool(); // 获取复选框的状态
-		qDebug() << "Checkbox clicked at row: " << index.row();
 		QStyleOptionButton checkboxStyle;
 		checkboxStyle.state = checked ? QStyle::State_On : QStyle::State_Off; // 设置复选框的状态
 		checkboxStyle.rect = option.rect; // 设置复选框的大小和位置

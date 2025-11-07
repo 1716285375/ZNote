@@ -1,6 +1,6 @@
 #pragma once
 
-#include "task.h"
+#include "core/download/task.h"
 
 #include <QAbstractItemModel>
 
@@ -13,34 +13,46 @@ public:
 	~HistoryModel();
 
 
-	// ĞĞÊı
+	// ï¿½ï¿½ï¿½ï¿½
 	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	// ÁĞÊı
+	// ï¿½ï¿½ï¿½ï¿½
 	int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	// ·µ»ØÊı¾İ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
-	// ÉèÖÃÊı¾İ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//bool setData(const QModelIndex& index, const QVariant& value, int role /*= Qt::EditRole*/);
 
-	// »ñÈ¡±íÍ·Êı¾İ
+	// ï¿½ï¿½È¡ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-	// »ñÈ¡Ö¸¶¨ÏîµÄË÷Òı
+	// ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
 
-	// »ñÈ¡¸¸ÏîË÷Òı£¨ÈôĞèÒª£©
+	// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½
 	QModelIndex parent(const QModelIndex& index) const override;
 
-	// ²åÈëĞĞ/ÁĞµÈ²Ù×÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ĞµÈ²ï¿½ï¿½ï¿½
 	void addhistory(const DownloadHistoryItem& history);
 
-	// Ìí¼ÓÒÆ³ıÈÎÎñµÄ·½·¨
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	void removehistorys(const QList<int>& rows);
 
 	QList<DownloadHistoryItem> getHistortyItems() { return historyItems; }
+	
+	// åˆ é™¤å•æ¡å†å²è®°å½•
+	void removeHistory(int row);
+	
+	// æ¸…ç©ºæ‰€æœ‰å†å²è®°å½•
+	void clearHistory();
+	
+	// åˆ·æ–°å†å²è®°å½•ï¼ˆä»æœåŠ¡åŠ è½½ï¼‰
+	void refresh();
+	
+	// è®¾ç½®å†å²è®°å½•ï¼ˆä»æœåŠ¡åŠ è½½ï¼‰
+	void setHistory(const QList<DownloadHistoryItem> &items);
 
 
 private:

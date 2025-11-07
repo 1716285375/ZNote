@@ -1,0 +1,137 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  release:
+    types: [ published ]
+
+jobs:
+  build-windows:
+    name: Build on Windows
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.9.1'
+        modules: 'qt.qt6.6910.win64_msvc2022_64'
+        cache: true
+        
+    - name: Setup MSVC
+      uses: microsoft/setup-msbuild@v1.1
+      
+    - name: Configure CMake
+      run: |
+        cmake -B build -S ZNote-dev `
+          -DCMAKE_BUILD_TYPE=Release `
+          -DCMAKE_PREFIX_PATH="$env:Qt6_DIR"
+          
+    - name: Build
+      run: cmake --build build --config Release
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: windows-build
+        path: build/Release/ZNote-dev.exe
+        if-no-files-found: warn
+
+  build-linux:
+    name: Build on Linux
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          cmake \
+          ninja-build \
+          libgl1-mesa-dev \
+          libxkbcommon-dev \
+          libxcb-xinerama0-dev
+          
+    - name: Setup Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.9.1'
+        modules: 'qt.qt6.6910.gcc_64'
+        cache: true
+        
+    - name: Configure CMake
+      run: |
+        cmake -B build -S ZNote-dev \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="${{ env.Qt6_DIR }}"
+          
+    - name: Build
+      run: cmake --build build --config Release
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-build
+        path: build/ZNote-dev
+        if-no-files-found: warn
+
+  build-macos:
+    name: Build on macOS
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        brew install cmake ninja
+        
+    - name: Setup Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.9.1'
+        modules: 'qt.qt6.6910.clang_64'
+        cache: true
+        
+    - name: Configure CMake
+      run: |
+        cmake -B build -S ZNote-dev \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_PREFIX_PATH="${{ env.Qt6_DIR }}"
+          
+    - name: Build
+      run: cmake --build build --config Release
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: macos-build
+        path: build/ZNote-dev.app
+        if-no-files-found: warn
+
+  check-format:
+    name: Check Code Format
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check for TODO/FIXME
+      run: |
+        if grep -r "TODO\|FIXME\|XXX\|HACK" ZNote-dev/src ZNote-dev/include --exclude-dir=build; then
+          echo "Found TODO/FIXME comments. Please address them before merging."
+          exit 1
+        fi
+

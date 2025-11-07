@@ -76,12 +76,37 @@ Makefile
 *.app
 *.dSYM/
 
-# out
+# Build outputs
 out/
+build/
 .vs/
 
-# vendor
+# Vendor
 vendor/
 
 # vcpkg
 vcpkg*/
+
+# Application-specific
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.log
+config.json
+download_history.json
+znote.log
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# User-specific
+CMakeUserPresets.json
