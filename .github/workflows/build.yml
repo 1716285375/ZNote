@@ -20,7 +20,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.6'
+        version: '6.9'
         arch: 'win64_msvc2022_64'
         modules: 'qtmultimedia'
         cache: true
@@ -66,7 +66,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.6'
+        version: '6.9'
         arch: 'gcc_64'
         modules: 'qtmultimedia'
         cache: true
@@ -102,7 +102,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.6'
+        version: '6.9'
         arch: 'clang_64'
         modules: 'qtmultimedia'
         cache: true
