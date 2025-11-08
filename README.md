@@ -8,7 +8,7 @@
 
 A modern, cross-platform desktop application for downloading videos from Bilibili and other platforms using yt-dlp. Built with Qt6 and C++17.
 
-一个现代化的跨平台桌面应用程序，用于从 Bilibili 和其他平台下载视频，基于 yt-dlp 构建。使用 Qt6 和 C++17 开发。
+一个现代化的跨平台桌面应用程序，用于从 Bilibili 平台下载视频，基于 yt-dlp 构建。使用 Qt6 和 C++17 开发。
 
 ## 🖼️ Interface Preview
 
