@@ -59,8 +59,8 @@ ZNote 提供简洁直观的用户界面，左侧导航栏包含五个主要功�
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/1716285375/ZNote-dev.git
-   cd ZNote-dev/ZNote-dev
+   git clone https://github.com/1716285375/ZNote.git
+   cd ZNote
    ```
 
 2. **安装 Qt6**
@@ -85,8 +85,8 @@ ZNote 提供简洁直观的用户界面，左侧导航栏包含五个主要功�
 
 ### Windows 快速开始
 
-1. 从 [发布页面](https://github.com/1716285375/ZNote-dev/releases) 下载最新版本
-2. 解压并运行 `ZNote-dev.exe`
+1. 从 [发布页面](https://github.com/1716285375/ZNote/releases) 下载最新版本
+2. 解压并运行 `ZNote.exe`
 3. 将 `yt-dlp.exe` 放置在可执行文件同一目录
 
 ## 📖 使用指南
@@ -134,7 +134,7 @@ ZNote 提供简洁直观的用户界面，左侧导航栏包含五个主要功�
 ## 📁 项目结构
 
 ```
-ZNote-dev/
+ZNote/
 ├── ZNote/              # 主项目目录
 │   ├── assets/        # 资源文件 (图标、样式、声音)
 │   ├── include/       # 头文件
@@ -198,8 +198,8 @@ cmake --build out/build/release
 
 ## 📧 联系方式
 
-- **问题反馈**: [GitHub Issues](https://github.com/1716285375/ZNote-dev/issues)
-- **讨论**: [GitHub Discussions](https://github.com/1716285375/ZNote-dev/discussions)
+- **问题反馈**: [GitHub Issues](https://github.com/1716285375/ZNote/issues)
+- **讨论**: [GitHub Discussions](https://github.com/1716285375/ZNote/discussions)
 - **QQ 交流群**: ZNote 开源项目群 (群号: 491086094)
 
 ## 📅 更新日志

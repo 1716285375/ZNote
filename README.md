@@ -61,8 +61,8 @@ The settings page provides rich configuration options, including:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/1716285375/ZNote-dev.git
-   cd ZNote-dev/ZNote-dev
+   git clone https://github.com/1716285375/ZNote.git
+   cd ZNote
    ```
 
 2. **Install Qt6**
@@ -87,8 +87,8 @@ The settings page provides rich configuration options, including:
 
 ### Windows Quick Start
 
-1. Download the latest release from [Releases](https://github.com/1716285375/ZNote-dev/releases)
-2. Extract and run `ZNote-dev.exe`
+1. Download the latest release from [Releases](https://github.com/1716285375/ZNote/releases)
+2. Extract and run `ZNote.exe`
 3. Place `yt-dlp.exe` in the same directory as the executable
 
 ## 📖 Usage
@@ -136,7 +136,7 @@ The application uses `config.json` for settings. A default configuration is crea
 ## 📁 Project Structure
 
 ```
-ZNote-dev/
+ZNote/
 ├── ZNote/              # Main project directory
 │   ├── assets/         # Resources (icons, styles, sounds)
 │   ├── include/        # Header files
@@ -202,8 +202,8 @@ This project is licensed under the MIT License - see the [ZNote/LICENSE](ZNote/L
 
 ## 📧 Contact
 
-- **Issues**: [GitHub Issues](https://github.com/1716285375/ZNote-dev/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/1716285375/ZNote-dev/discussions)
+- **Issues**: [GitHub Issues](https://github.com/1716285375/ZNote/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/1716285375/ZNote/discussions)
 - **QQ Group**: ZNote Open Source Project Group (Group ID: 491086094)
 
 ## 📅 Changelog
