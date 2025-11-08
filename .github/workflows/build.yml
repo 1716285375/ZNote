@@ -20,9 +20,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.7.2'
-        host: 'windows'
-        target: 'desktop'
+        version: '6'
         arch: 'win64_msvc2022_64'
         cache: true
         
@@ -67,9 +65,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.7.2'
-        host: 'linux'
-        target: 'desktop'
+        version: '6'
         arch: 'gcc_64'
         cache: true
         
@@ -104,9 +100,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.7.2'
-        host: 'mac'
-        target: 'desktop'
+        version: '6'
         arch: 'clang_64'
         cache: true
         
