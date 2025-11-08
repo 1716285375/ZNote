@@ -181,20 +181,23 @@ void HistoryWidget::onDeleteClicked()
 
 void HistoryWidget::onSearchChanged()
 {
-    // TODO: 实现搜索功能
+    // 搜索功能：根据输入文本过滤历史记录
+    // 当前版本暂未实现，保留接口供后续扩展
     Q_UNUSED(m_searchEdit->text())
 }
 
 void HistoryWidget::onFilterChanged()
 {
-    // TODO: 实现过滤功能
+    // 过滤功能：根据状态、类型和日期范围过滤历史记录
+    // 当前版本暂未实现，保留接口供后续扩展
 }
 
 void HistoryWidget::onHistoryDoubleClicked(const QModelIndex &index)
 {
     if (!m_model) return;
     
-    // TODO: 实现双击打开文件或文件夹
+    // 双击功能：打开对应的文件或文件夹
+    // 当前版本暂未实现，保留接口供后续扩展
     Q_UNUSED(index)
 }
 

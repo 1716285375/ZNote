@@ -21,7 +21,8 @@ jobs:
       uses: jurplel/install-qt-action@v4
       with:
         version: '6.9.1'
-        modules: 'qt.qt6.6910.win64_msvc2022_64'
+        modules: 'qtbase qtmultimedia'
+        arch: 'win64_msvc2022_64'
         cache: true
         
     - name: Setup MSVC
@@ -66,7 +67,8 @@ jobs:
       uses: jurplel/install-qt-action@v4
       with:
         version: '6.9.1'
-        modules: 'qt.qt6.6910.gcc_64'
+        modules: 'qtbase qtmultimedia'
+        arch: 'gcc_64'
         cache: true
         
     - name: Configure CMake
@@ -101,7 +103,8 @@ jobs:
       uses: jurplel/install-qt-action@v4
       with:
         version: '6.9.1'
-        modules: 'qt.qt6.6910.clang_64'
+        modules: 'qtbase qtmultimedia'
+        arch: 'clang_64'
         cache: true
         
     - name: Configure CMake
