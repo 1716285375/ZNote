@@ -20,7 +20,7 @@ jobs:
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6'
+        version: '6.9'
         arch: 'win64_msvc2022_64'
         modules: 'qtmultimedia'
         cache: true
@@ -65,18 +65,11 @@ jobs:
           
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
-      id: qt
       with:
-        version: '6'
+        version: '6.9'
         arch: 'gcc_64'
+        modules: 'qtmultimedia'
         cache: true
-        
-    - name: Install Qt Multimedia
-      run: |
-        python3 -m pip install aqtinstall
-        QT_DIR="${{ env.Qt6_DIR }}"
-        python3 -m aqt install-qt linux desktop 6 gcc_64 --modules qtmultimedia --outputdir "$(dirname "$QT_DIR")"
-      continue-on-error: true
         
     - name: Configure CMake
       run: |
@@ -108,18 +101,11 @@ jobs:
         
     - name: Setup Qt
       uses: jurplel/install-qt-action@v4
-      id: qt
       with:
-        version: '6'
+        version: '6.9'
         arch: 'clang_64'
+        modules: 'qtmultimedia'
         cache: true
-        
-    - name: Install Qt Multimedia
-      run: |
-        python3 -m pip install aqtinstall
-        QT_DIR="${{ env.Qt6_DIR }}"
-        python3 -m aqt install-qt mac desktop 6 clang_64 --modules qtmultimedia --outputdir "$(dirname "$QT_DIR")"
-      continue-on-error: true
         
     - name: Configure CMake
       run: |
